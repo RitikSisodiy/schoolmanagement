@@ -1,0 +1,168 @@
+{% extends 'staff/basic.html' %}
+{% block table %}
+{% if messages %}
+                            <div class="form-group">
+                            <div class="col-12">
+                                {% for message in messages %}
+                                {% if message.tags == "error" %}
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                    {{ message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                {% elif message.tags == "success" %}
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                    {{ message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                            </div>
+                            {% endif %}
+<form method="POST">{% csrf_token %}
+{% if result %}
+<table id="example" class="display table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
+    {% csrf_token %}
+    <thead>
+        <tr>
+            <th>SN.</th>
+            <th>subject</th>
+            <th>obtain-marks</th>
+            <th>max-marks</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row,maxmarks in result %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{row.subject}}</td>
+            <td><input name="{{row.subject}}" ></td>
+            <td><input name="max-{{row.subject}}" value="{{maxmarks.max_marks}}" > </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<button type="submit" class="btn btn-outline-success">update-result</button>
+{% endif %}
+{% if mainresult %}
+<div class="container_fluid" style="background: #f0f0f0; border-radius: 14px;">
+<div class="container">
+    <div style="height: 2vh;"></div>
+
+<table width='100%'>
+    <tr>
+        <td><strong>exam_name:</strong> </td>
+        <td>{{mainresult.0.exam.exam_name}} {{mainresult.0.exam.start_date}}</td>
+        <td><strong>student_name:</strong> </td>
+        <td>{{mainresult.0.student.user.first_name}} {{mainresult.0.student.user.last_name}}</td>
+    </tr>
+    <tr>
+        <td><strong>Father_name:</strong> </td>
+        <td>{{mainresult.0.student.Father_name}}</td>
+        <td><strong>Mother_name:</strong> </td>
+        <td>{{mainresult.0.student.Mother_name}}</td>
+    </tr>
+    <tr>
+        <td><strong>Date of Birth:</strong> </td>
+        <td>{{mainresult.0.student.dob}}</td>
+        <td><strong>Roll No:</strong> </td>
+        <td>{{mainresult.0.student.id|add:1000}}</td>
+    </tr>
+</table>
+<div style="height: 2vh;"></div>
+
+</div>
+</div>
+    <div class="container_fluid my-4 " style="background: #f0f0f0; border-radius: 14px;">
+        <div class="container">
+    <div style="height: 2vh;"></div>
+<table id="example" class="display table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
+    <thead>
+        <tr role="row">
+            <th rowspan="1" colspan="1">#</th>
+
+            
+            <th rowspan="1" colspan="1">Subject</th>
+            
+            <th rowspan="1" colspan="1">obtain-marks</th>
+            
+            <th rowspan="1" colspan="1">Edit-obtain-marks</th>
+            
+            <th rowspan="1" colspan="1">max-marks</th>
+            
+            <th rowspan="1" colspan="1">Edit-max-marks</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th rowspan="1" colspan="1">#</th>
+
+            
+            <th rowspan="1" colspan="1">Subject</th>
+            
+            <th rowspan="1" colspan="1">obtain-marks</th>
+            
+            <th rowspan="1" colspan="1">Edit-obtain-marks</th>
+            
+            <th rowspan="1" colspan="1">max-marks</th>
+            
+            <th rowspan="1" colspan="1">Edit-max-marks</th>
+    
+        </tr>
+    </tfoot>
+    <tbody>
+        
+        {% for row in mainresult %}
+<tr role="row" class="odd">
+<td class="">{{forloop.counter}}</td>
+<td class="">{{row.subject}}</td>
+<td class="">{{row.obtain_marks}}</td>
+<td class=""><input name="{{row.subject}}"  value="{{row.obtain_marks}}"></td>
+<td class="">{{row.max_marks}}</td>
+<td class=""><input name="max-{{row.subject}}" value="{{row.max_marks}}"></td>
+</tr>
+{% endfor %}
+<tr>
+    <td><strong>TOTAL</strong></td>
+    <td></td>
+    <td><strong>{{total.ob_total}}</strong></td>
+    <td></td>
+    <td><strong>{{total.mx_total}}</strong></td>
+    <td></td>
+</tr>
+<tr>
+    <td><strong>Percent</strong></td>
+    <td></td>
+    <td><strong>{{total.percent|slice:":5"}}%</strong></td>
+    <td></td>
+    <td><strong>{{total.status}}</strong></td>
+    <td></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+<button type="submit" class="btn btn-outline-success">Update-Result</button>
+<a href="/staff/result/delete/?exam={{mainresult.0.exam.id}}&stuid={{mainresult.0.student.id}}&date={{mainresult.0.exam.start_date}}" class="mx-2 btn btn-outline-danger">Delete-Result</a>
+<button  class="btn btn-outline-warning" type="button" onclick="$('#pdfsubmit').click()">Print-Result</button>
+</form>
+<form action="{% url 'getresult' %}" method="GET" style="display: none;">
+    <input type="hidden" name="exam" value="{{request.GET.exam}}">
+    <input type="hidden" name="stuid" value="{{request.GET.stuid}}">
+    <input type="hidden" name="getpdf" value="print">
+<button  class="btn btn-outline-primary" type="submit" id="pdfsubmit" formtarget="_blank">Print-Result</button>
+</form>
+
+
+
+{% endif %}
+<div style="min-height: 4vh;"></div>
+</div>
+</div>
+{% endblock %}

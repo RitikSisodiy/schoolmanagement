@@ -1,0 +1,113 @@
+{% extends 'staff/basic.html' %}
+{% block table %}
+
+{% load static %}
+
+<section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Take Attendance</h3>
+                    </div>
+                    <!-- /.card-header -->
+
+                                {% comment %} Display Messages {% endcomment %}
+                                {% if messages %}
+                                <div class="form-group">
+                                <div class="col-12">
+                                    {% for message in messages %}
+                                    {% if message.tags == "error" %}
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                    {% elif message.tags == "success" %}
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                                </div>
+                                {% endif %}
+                         <form id="fetch_student">   
+                        <div class="card-body">
+                           
+                            <div class="form-group">
+                                <label>Class </label>
+                                <select class="form-control" name="subject" id="subject">
+                                    {% for row in classes %}
+                                        <option value="{{ row.id }}">{{ row.standard }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Attendance Date: </label> 
+                                <input type="date" name="attendance_date" id="attendance_date" class="form-control" required>
+                            </div>
+
+
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                        <button type="submit" class="btn btn-primary" id="">Fetch Student</button>
+                        </div>
+                    </form>
+                        {% comment %} Displaying Students Here {% endcomment %}
+
+                        <div class="card-footer" id="ajaxresponse">
+                        </div> 
+
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+
+        </div><!-- /.container-fluid -->
+      </section>
+
+  {% endblock %}
+  {% block custom_js %}
+<script>
+    $("#fetch_student").on('submit',function(event){
+        var classid = $('#subject').val()
+        var date = $('#attendance_date').val()
+        var httpx = new XMLHttpRequest
+        $('#ajaxresponse').html(`<div class="d-flex justify-content-center">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>`)
+httpx.open("GET",`{% url 'manageattendance' %}?id=${classid}&date=${date}`,true)
+httpx.send()
+httpx.onreadystatechange = function(){
+    if(httpx.readyState==4 && httpx.status==200){
+        var resdata = httpx.response
+        resdata = JSON.parse(resdata)
+        console.log(resdata)
+        var res = ``
+        for(var i=0;i<resdata.length;i++){
+            if (resdata[i].attend){ var check = "checked" }else{var check = ''}
+            res += `<div><input type="checkbox" ${check} id="student${resdata[i].stuid}" name="student${resdata[i].stuid}">
+            <label for="student${resdata[i].stuid}" class="form-check-label">${resdata[i].stuname} </label><div>`
+        }
+        var extra = `<form method='POST'>{% csrf_token %}<input type='hidden' name='classid' value="${classid}"<div class="form-group"><label>Attendance Date: </label> <input type="hidden" name="attendance_date" id="attendance_date" class="form-control" value=${date} required></div><div>${res}<div class="my-5"></div>  </div><div class="form-group"><button id="save_attendance" class="btn btn-success" type="submit">Save Attendance Data</button></div></form>`
+        
+        $('#ajaxresponse').html(extra)
+    }        
+}
+event.preventDefault()
+})
+</script>
+{% endblock custom_js %}

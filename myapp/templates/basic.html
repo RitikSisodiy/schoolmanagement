@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard-Sequel</title>
+    <!-- icon-fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- link-bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <!-- local css -->
+    <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}">
+      <link rel="icon" href="/media/schoolinfo/aryavart_vidhya_mandir_logo.png">
+  <!-- Tell the browser to be responsive to screen width -->
+  <link rel="stylesheet" href="/static/dist/css/adminlte.min.css">
+
+
+</head>
+
+    {% block custom_css %}
+    {% endblock custom_css %}
+
+<body>
+  <!-- Button trigger modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">{% block formtitle %}{% endblock %}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                {% block addform %}
+                {% endblock %}
+            </div>
+          </div>
+      </div>
+  </div>
+    <div class="{% if request.session.nav %}{{request.session.nav}}{% else %}main{% endif %}" id="mainsidebar">
+       {% include 'sidebar_template.html' with user=user id=id %}
+        <div class="main-display">
+            <div class="main-child">
+                <div class="controls">
+                    <div class="toggler"  onclick = " Updatenav()">
+                        <i class="toggler-ico"></i>
+                    </div>
+                    <div class="second"><div class="left"><h3>{{schoolinfo.name}}</h3></div></div>    
+                    <div class="right">
+                       
+                        <div class="view-site">
+                            <a href="{% url "index" %}">View site <i class="fa fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+                 <div class="second">
+                    <div class="left">
+                        <h3>Dashboard</h3>
+                        <div class="location"><a href="#"><span>Home</span></a> / <a href="#">Dashboard</a> </div>
+                    </div>
+                   
+                </div>
+                <div class="third mx-3 my-5">
+                  <div class="row">
+                {% block table %}
+
+                {% endblock %}
+                </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+  var ele = document.getElementsByTagName('input')
+  for(var i =0; i<ele.length; i++){
+      if(ele[i].className=='' && ele[i].getAttribute('type') != 'checkbox'){
+      ele[i].setAttribute('class','form-control col')
+      }
+      if(ele[i].className=='vTimeField'){
+        ele[i].setAttribute('type','time')
+      }
+      if(ele[i].className=='vDateField'){
+        ele[i].setAttribute('type','date')
+        ele[i].setAttribute('class','form-control')
+      }
+  }
+  var sel = document.getElementsByTagName('select')
+  for(var i =0; i<sel.length; i++){
+      sel[i].setAttribute('class','form-control col')
+  }
+</script>
+    <script>
+        $('.toggler').click(() => {
+            $('.main').toggleClass('nav-active')
+        })
+        $('.second .right').click(() => {
+            $('.second .right ').toggleClass('active')
+        })
+        var elem = document.documentElement;
+        function cheackFullscreen(){
+           console.log(elem.requestFullscreen)
+        }
+        function Updatenav(){
+            console.log("working")
+            var nav = $("#mainsidebar").attr('class')
+            if(nav=='main'){nav='main nav-active'}else{nav="main"}
+            $("#mainsidebar").attr('class')
+            console.log(nav)
+            var xhttp = new XMLHttpRequest()
+            xhttp.open('GET','{% url 'updatenav' %}?nav='+nav,true)
+            xhttp.send()
+            xhttp.onreadystatechange = function(){
+            if(xhttp.readyState==4 && xhttp.status==200){
+            console.log('done')
+            }
+            }
+        }
+        {% comment %} $( document ).ready(function() {
+            if( navigator.userAgent.match(/Android/i)
+                || navigator.userAgent.match(/webOS/i)
+                || navigator.userAgent.match(/iPhone/i)
+                || navigator.userAgent.match(/iPad/i)
+                || navigator.userAgent.match(/iPod/i)
+                || navigator.userAgent.match(/BlackBerry/i)
+                || navigator.userAgent.match(/Windows Phone/i)){
+                    $("#mainsidebar").attr('class','main')}else{
+            if (localStorage.getItem('nav')!= null){$("#mainsidebar").attr('class',localStorage.getItem('nav'))}}
+        }); {% endcomment %}
+    </script>
+    {% block custom_js %}
+    {% endblock custom_js %}
+
+</body>
+
+</html>

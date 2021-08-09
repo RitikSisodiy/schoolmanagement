@@ -1,0 +1,21 @@
+<footer class="main-footer">
+      <strong>Copyright &copy; {% now "Y" %}</strong> 
+      All rights reserved.
+      <div class="float-right d-none d-sm-inline-block">
+        <b>Version</b> 1.0
+      </div>
+      <div><strong>contact us</strong></div>
+        <div><strong>Address :</strong>
+      {{schoolinfo.address}}
+      <div class="float-right d-none d-sm-inline-block">
+        <b>Phone :</b> {{schoolinfo.phone}} , {{schoolinfo.phone2}}
+      </div>
+      </div>   
+      <div><strong>Email : </strong>{{schoolinfo.email}}
+        <div class="float-right d-none d-sm-inline-block">
+          <b><a href="{% url "staffregister" %}">Home</a></b>
+        </div>
+      </div> 
+    
+    
+    </footer>

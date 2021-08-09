@@ -1,0 +1,21 @@
+Collecting django-twilio
+  Downloading django_twilio-0.13.1.post0-py3-none-any.whl (23 kB)
+Collecting phonenumbers>=8.10.22
+  Downloading phonenumbers-8.12.21-py2.py3-none-any.whl (2.6 MB)
+Collecting twilio<7,>=6.3.0
+  Using cached twilio-6.56.0-py2.py3-none-any.whl
+Requirement already satisfied: setuptools>=36.2 in c:\users\ritik\desktop\internship\restframwork\env\lib\site-packages (from django-twilio) (53.0.0)
+Requirement already satisfied: Django<3.2,>=2.2.8 in c:\users\ritik\desktop\internship\restframwork\env\lib\site-packages (from django-twilio) (3.1.7)
+Collecting django-phonenumber-field>=0.6
+  Downloading django_phonenumber_field-5.0.0-py3-none-any.whl (53 kB)
+Requirement already satisfied: pytz in c:\users\ritik\desktop\internship\restframwork\env\lib\site-packages (from Django<3.2,>=2.2.8->django-twilio) (2021.1)
+Requirement already satisfied: asgiref<4,>=3.2.10 in c:\users\ritik\desktop\internship\restframwork\env\lib\site-packages (from Django<3.2,>=2.2.8->django-twilio) (3.3.1)
+Requirement already satisfied: sqlparse>=0.2.2 in c:\users\ritik\desktop\internship\restframwork\env\lib\site-packages (from Django<3.2,>=2.2.8->django-twilio) (0.4.1)
+Requirement already satisfied: six in c:\users\ritik\desktop\internship\restframwork\env\lib\site-packages (from twilio<7,>=6.3.0->django-twilio) (1.15.0)
+Requirement already satisfied: PyJWT==1.7.1 in c:\users\ritik\desktop\internship\restframwork\env\lib\site-packages (from twilio<7,>=6.3.0->django-twilio) (1.7.1)
+Requirement already satisfied: requests>=2.0.0 in c:\users\ritik\desktop\internship\restframwork\env\lib\site-packages (from twilio<7,>=6.3.0->django-twilio) (2.25.1)
+Requirement already satisfied: chardet<5,>=3.0.2 in c:\users\ritik\desktop\internship\restframwork\env\lib\site-packages (from requests>=2.0.0->twilio<7,>=6.3.0->django-twilio) (4.0.0)
+Requirement already satisfied: certifi>=2017.4.17 in c:\users\ritik\desktop\internship\restframwork\env\lib\site-packages (from requests>=2.0.0->twilio<7,>=6.3.0->django-twilio) (2020.12.5)
+Requirement already satisfied: urllib3<1.27,>=1.21.1 in c:\users\ritik\desktop\internship\restframwork\env\lib\site-packages (from requests>=2.0.0->twilio<7,>=6.3.0->django-twilio) (1.26.3)
+Requirement already satisfied: idna<3,>=2.5 in c:\users\ritik\desktop\internship\restframwork\env\lib\site-packages (from requests>=2.0.0->twilio<7,>=6.3.0->django-twilio) (2.10)
+Installing collected packages: twilio, phonenumbers, django-phonenumber-field, django-twilio

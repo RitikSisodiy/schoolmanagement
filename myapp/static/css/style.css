@@ -1,0 +1,152 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .topnav {
+    list-style-type: none;
+    margin: 0px;
+    padding: 8px;
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  .navl{
+    float: left;
+    display: block;
+    padding: 6px 8px;
+    text-decoration: none;
+  }
+  
+  .navl:hover{
+     background-color: #111;
+  }
+  
+  
+  .navr{
+    float: right;
+    display: block;
+    padding: 6px 8px;
+    text-decoration: none;
+  }
+  
+  .navr:hover{
+     background-color: #111
+  }
+  
+  .navsocial{
+  
+    float: right;
+     padding: 6px 8px;
+    text-decoration: none;
+  }
+  .fa-facebook {
+      float: right;
+    color: white;
+    margin: 5px;
+  }
+  .fa-twitter {
+      float: right;
+    color: white;
+    margin: 5px;
+  }
+  .fa-google {
+      float: right;
+    color: white;
+    margin: 5px;
+  }
+  .fa-linkedin {
+      float: right;
+    color: white;
+    margin: 5px;
+  } 
+  
+  .dropbtn {
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+  }
+  
+  .dropdown {
+    position: relative;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    
+    min-width: 160px;
+    
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+  }
+  
+  .text {
+    /*padding: 8px 12px;*/
+    position: absolute;
+    top: 8px;
+    width: 100%;
+  }
+  
+  .font{
+    font-weight: bold; 
+    text-align: center;
+  }
+  
+  .button {
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 16px;
+    /*transition: 0.3s;*/
+  }
+  
+  .button:hover {
+    background-color: #e60073;
+    color: white;
+  }
+  
+  .Card{
+    border-radius: 4px;
+      background: #fff;
+      box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+      transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform 
+      cubic-bezier(.155,1.105,.295,1.12);
+      padding: 14px 80px 18px 36px;
+      cursor: pointer;border-radius: 4px;
+      background: #fff;
+      box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+      transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform 
+      cubic-bezier(.155,1.105,.295,1.12);
+      padding: 14px 80px 18px 36px;
+      cursor: pointer;
+  }
+  
+  .Card:hover{
+     transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+  }
+  

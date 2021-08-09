@@ -1,0 +1,181 @@
+{% extends 'basic.html' %}
+{% block table %}
+  {% if messages %}
+                            <div class="form-group">
+                            <div class="col-12">
+                                {% for message in messages %}
+                                {% if message.tags == "error" %}
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                    {{ message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                {% elif message.tags == "success" %}
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                    {{ message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                            </div>
+                            {% endif %}
+  
+   {% if stulist %}
+   
+   <table class="display table table-striped table-bordered dataTable my-3">
+       <thead>
+           <tr>
+               <th>SN.</th>
+               <th>name</th>
+               <th>Roll No.</th>
+               <th>result</th>
+           </tr>
+       </thead>
+       <tbody>
+           {% for row in stulist %}
+           <tr>
+               <td>{{forloop.counter}}</td>
+               <td>{{row.user.first_name}} {{row.user.last_name}}</td>
+               <td>{{row.id|add:1000}}</td>
+               <td><a href="/?student={{row.user.first_name}} {{row.user.last_name}}&stuid={{row.id}}" class="btn btn-outline-primary btn-sm">view-result</a></td>
+           </tr>
+           {% endfor %}
+       </tbody>
+   </table>
+ 
+   {% elif exams %}
+
+<table class="display table table-striped table-bordered dataTable my-3">
+    <thead>
+        <tr>
+            <th>SN.</th>
+            <th>Exam Name</th>
+            <th>Date</th>
+            <th>result</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in exams %}
+        <tr class="">
+            <td>{{forloop.counter}}</td>
+            <td>{{row.exam_name}}</td>
+            <td>{{row.start_date}}</td>
+            <td><a href="/result/?exam={{row.id}}&stuid={{stuid}} " class="btn btn-outline-primary btn-sm">view-result</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<style>
+    .icon-lg {
+        font-size: 5rem;
+    }
+
+    .icon-bg {
+        border: solid;
+        border-color: white;
+        border-width: thick;
+    }
+    a{
+        text-decoration:none;
+        color: black;
+        
+    }
+    a:hover{
+        color: azure;
+        text-decoration: none;
+    }
+    .sidebar .nav-link {
+    font-weight: 500;
+    color:aliceblue;
+}
+</style>
+<center>
+    <div class="row container-fluid my-2">
+     <div class="col icon-bg"><a href="/signin">
+         <h2 class="icon-lg">  <i class="bi fas fa-sign-in-alt"></i>
+         <h4>Signin</h4></a>
+     </div>
+     <div class="col icon-bg"><a href="/staffregister">
+         <h2 class="icon-lg"><i class="fas fa-chalkboard-teacher"></i></h2>
+         <h4>Staff Register</h4></a>
+     </div>
+     <div class="col icon-bg"><a href="/studentregister">
+         <h2 class="icon-lg"><i class="fas fa-book-reader"></i></h2>
+         <h4>Student Register</h4></a>
+     </div>
+     <div class="col icon-bg"><a href="/students">
+         <h2 class="icon-lg"><i class="fas fa-user-graduate"></i></h2>
+         <h4>Students</h4></a>
+     </div>
+ </div>
+</center>
+<div class="row">
+    <div class="col-md-4 mt-5 mb-3">
+        <div class="card card-hover">
+            <div class="dash-box text-white">
+                <h1 class="dash-icon">
+                    <i class="nav-icon bi fas fa-sign-in-alt mb-1 font-16"></i>
+                </h1>
+                <div class="dash-content">
+                    <small class="font-light">Signin</small>
+                <div>
+                  <a href="{% url 'signin' %}" class="small-box-footer text-light ">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mt-5 mb-3">
+        <div class="card card-hover">
+            <div class="dash-box text-white">
+                <h1 class="dash-icon">
+                    <i class="nav-icon bi fas fa-chalkboard-teacher mb-1 font-16"></i>
+                </h1>
+                <div class="dash-content">
+                    <small class="font-light">Staff Register</small>
+                <div>
+                  <a href="{% url 'staffregister' %}" class="small-box-footer text-light ">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mt-5 mb-3">
+        <div class="card card-hover">
+            <div class="dash-box text-white">
+                <h1 class="dash-icon">
+                    <i class="nav-icon bi fas fa-user-graduate mb-1 font-16"></i>
+                </h1>
+                <div class="dash-content">
+                    <small class="font-light">Student Register</small>
+                <div>
+                  <a href="{% url 'studentregister' %}" class="small-box-footer text-light ">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mt-5 mb-3">
+        <div class="card card-hover">
+            <div class="dash-box text-white">
+                <h1 class="dash-icon">
+                    <i class="nav-icon bi fas fa-user-graduate mb-1 font-16"></i>
+                </h1>
+                <div class="dash-content">
+                    <small class="font-light">Students</small>
+                <div>
+                  <a href="{% url 'getstudents' %}" class="small-box-footer text-light ">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+   {% endblock %}

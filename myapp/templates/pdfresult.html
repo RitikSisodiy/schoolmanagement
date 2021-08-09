@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+</head>
+<style>
+  
+</style>
+<body>
+      <div class="container-fluid" style="background-color:white">
+          <div class="row text-center d-block">
+              <center>
+              <h1 class="text-primary bold pb-25">{{schoolinfo.name}}</h1>
+              </center>
+          </div>
+          <div class="container" id="marksheet">
+              <table style="font-size:12px" cellpadding="3">
+                <tr>
+                    <td>
+                        <p>
+                            <b>Exam Name     : </b> {{mainresult.0.exam.exam_name}}
+                        </p>
+                      </td> <td>
+                        <p>
+                            <b>ROLL NO.     : </b> {{mainresult.0.student.id|add:1000}}
+                        </p>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>
+                        <p>
+                            <b>Student Name     : </b> {{mainresult.0.student.user.first_name}} {{mainresult.0.student.user.last_name}}
+                        </p>
+                      </td> <td>
+                        <p>
+                            <b>Father Name    : </b> {{mainresult.0.student.Father_name}}
+                        </p>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>
+                        <p>
+                            <b>Status   : </b> REGULAR
+                        </p>
+                      </td> <td>
+                        <p>
+                            <b>School Name   : </b> {{schoolinfo.name}}
+                        </p>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>
+                        <p>
+                            <b>Dirth Date   : </b> {{mainresult.0.student.dob}}
+                        </p>
+                      </td> <td>
+                        <p>
+                            <b>Gender   : </b>{{mainresult.0.student.gender}}
+                        </p>
+                      </td>
+                  </tr>
+                  
+              </table>
+              <h2 class="text-center text-primary">Mark Sheet</h2>
+              <table border="1" width='100%' style="font-size: 13px;">
+                <tr>
+                    <td>
+                        <table border="0.01" cellpadding = "5" cellspacing = "5">
+                            <thead>
+                                <tr>
+                                    <th>SN.</th>
+                                    <th>subject</th>
+                                    <th>obtain-marks</th>
+                                    <th>max-marks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                  
+                                {% for row in mainresult %}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{row.subject}}</td>
+                                    <td>{{row.obtain_marks}}</td>
+                                    <td>{{row.max_marks}}</td>
+                                </tr>
+                                {% endfor %}
+                                <tr>
+                                    <td><strong>TOTAL</strong></td>
+                                    <td></td>
+                                    <td><strong>{{total.ob_total}}</strong></td>
+                                    <td><strong>{{total.mx_total}}</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Percent</strong></td>
+                                    <td></td>
+                                    <td><strong>{{total.percent|slice:":5"}}%</strong></td>
+                                    <td><strong>{{total.status}}</strong></td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+              </table>
+          </div>
+          <h1>Contact:</h1>
+          <h2>Address: {{schoolinfo.address}}</h2>
+          <h2>Phone: {{schoolinfo.phone}} , {{schoolinfo.phone2}}</h2>
+        
+      </div>   
+</body>
+</html>

@@ -1,0 +1,98 @@
+{% extends 'basic.html' %}
+{% block body %}
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">{% block formtitle %}{% endblock %}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                {% block addform %}
+                {% endblock %}
+            </div>
+          </div>
+      </div>
+  </div>
+{% load static %}
+
+<h2>welcome {{user.first_name}} {{user.last_name}}</h2>
+{% block table %}{% endblock %}
+{% endblock %}
+{% block sidebar %}
+<li class="nav-item">
+    <a class="nav-link {% if request.path == '/staff/' %}active{% endif %} " href="/staff">
+    <i class="bi bi-house-door-fill"></i>
+      Dashboard 
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">
+      <i class="bi bi-person-plus-fill"></i>
+      Users
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/staff/schedule/">
+        <i class="bi bi-people-fill"></i>
+      Teaching Schedule
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/staff/mystudent">
+      <i class="bi bi-book"></i>
+      Students
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">
+      <i class="bi bi-card-checklist"></i>
+            Attendence
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="">
+      <i class="bi bi-intersect"></i>
+      Section
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {% if request.path == '/staff/classes/' %}active{% endif %}" href="/staff/classes">
+      <i class="bi bi-layout-wtf "></i>
+      Classes
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {% if request.path == '/staff/classes/subjects/' %}active{% endif %}" href="/staff/classes/subjects/">
+      <i class="bi bi-journal-code"></i>
+      Subject
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">
+      <i class="bi bi-clipboard"></i>
+      Reports
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">
+      <i class="bi bi-newspaper"></i>
+      Accounts
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">
+      <i class="bi bi-clipboard-data"></i>
+      Expenses
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">
+      <i class="bi bi-person-dash"></i>
+      Non-Teaching Staff
+    </a>
+  </li>
+  
+{% endblock %}

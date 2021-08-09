@@ -1,0 +1,117 @@
+{% extends 'student/basic.html' %}
+{% block page_title %}Result{% endblock %}
+{% block table %}
+{% if exams %}
+<table id="example" class="display table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
+    <thead>
+        <tr>
+            <th>SN.</th>
+            <th>Exam Name</th>
+            <th>Date</th>
+            <th>result</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in exams %}
+        <tr >
+            <td>{{forloop.counter}}</td>
+            <td>{{row.exam_name}}</td>
+            <td>{{row.start_date}}</td>
+            <td><a href="{% url 'viewresult' %}?exam={{row.id}}&stuid={{request.user.studentregister_set.all.0.id}} " class="btn btn-outline-primary btn-sm">view-result</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+{% if mainresult %}
+<div class="container_fluid" style="background: #f0f0f0; border-radius: 14px;">
+    <div class="container">
+        <div style="height: 2vh;"></div>
+    
+    <table width='100%'>
+        <tr>
+            <td><strong>exam_name:</strong> </td>
+            <td>{{mainresult.0.exam.exam_name}} {{mainresult.0.exam.start_date}}</td>
+            <td><strong>student_name:</strong> </td>
+            <td>{{mainresult.0.student.user.first_name}} {{mainresult.0.student.user.last_name}}</td>
+        </tr>
+        <tr>
+            <td><strong>Father_name:</strong> </td>
+            <td>{{mainresult.0.student.Father_name}}</td>
+            <td><strong>Mother_name:</strong> </td>
+            <td>{{mainresult.0.student.Mother_name}}</td>
+        </tr>
+        <tr>
+            <td><strong>Date of Birth:</strong> </td>
+            <td>{{mainresult.0.student.dob}}</td>
+            <td><strong>Roll No:</strong> </td>
+            <td>{{mainresult.0.student.id|add:1000}}</td>
+        </tr>
+    </table>
+    <div style="height: 2vh;"></div>
+    
+    </div>
+    </div>
+    <div style="height: 4vh;"></div>
+
+    <div class="container_fluid" style="background: #f0f0f0; border-radius: 14px;">
+        <div class="container">
+            <div style="height: 2vh;"></div>
+<table id="example" class="display table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">{% csrf_token %}
+    <thead>
+        <tr role="row">
+            <th rowspan="1" colspan="1">SN.</th>
+
+            
+            <th rowspan="1" colspan="1">subject</th>
+            
+            <th rowspan="1" colspan="1">obtain-marks</th>
+            
+            <th rowspan="1" colspan="1">max-marks</th>
+        </tr>
+    </thead>
+
+    <tbody>
+      
+        {% for row in mainresult %}
+        <tr role="row" >
+            <td>{{forloop.counter}}</td>
+            <td>{{row.subject}}</td>
+            <td>{{row.obtain_marks}}</td>
+            <td>{{row.max_marks}}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td><strong>TOTAL</strong></td>
+            <td></td>
+            <td><strong>{{total.ob_total}}</strong></td>
+            <td><strong>{{total.mx_total}}</strong></td>
+        </tr>
+        <tr>
+            <td><strong>Percent</strong></td>
+            <td></td>
+            <td><strong>{{total.percent|slice:":5"}}%</strong></td>
+            <td><strong>{{total.status}}</strong></td>
+        </tr>
+        
+    </tbody>
+</table>
+    
+
+
+
+
+
+</form>
+<form action="{% url 'getresult' %}">
+    <input type="hidden" name="exam" value="{{request.GET.exam}}">
+    <input type="hidden" name="stuid" value="{{request.GET.stuid}}">
+    <input type="hidden" name="getpdf" value="print">
+    <button class="btn btn-primary" type="submit"  formtarget="_blank">Print</button>
+</form>
+</div>
+<div style="height: 2vh;"></div>
+
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html>
+<head>
+	 <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+     <title> Arya Virth Vidya Mandir  </title>
+{% load static %}
+     <style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  list-style-type: none;
+  margin: 0px;
+  padding: 8px;
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.navl{
+  float: left;
+  display: block;
+  padding: 6px 8px;
+  text-decoration: none;
+}
+
+.navl:hover{
+   background-color: #111;
+}
+
+
+.navr{
+  float: right;
+  display: block;
+  padding: 6px 8px;
+  text-decoration: none;
+}
+
+.navr:hover{
+   background-color: #111
+}
+
+.navsocial{
+
+  float: right;
+   padding: 6px 8px;
+  text-decoration: none;
+}
+.fa-facebook {
+	float: right;
+  color: white;
+  margin: 5px;
+}
+.fa-twitter {
+	float: right;
+  color: white;
+  margin: 5px;
+}
+.fa-google {
+	float: right;
+  color: white;
+  margin: 5px;
+}
+.fa-linkedin {
+	float: right;
+  color: white;
+  margin: 5px;
+} 
+
+.dropbtn {
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  
+  min-width: 160px;
+  
+  z-index: 1;
+}
+
+.dropdown-content a {
+  
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+.text {
+  /*padding: 8px 12px;*/
+  position: absolute;
+  top: 8px;
+  width: 100%;
+}
+
+.font{
+  font-weight: bold; 
+  text-align: center;
+}
+
+.button {
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 16px;
+  /*transition: 0.3s;*/
+}
+
+.button:hover {
+  background-color: #e60073;
+  color: white;
+}
+
+.Card{
+  border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+    transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform 
+    cubic-bezier(.155,1.105,.295,1.12);
+    padding: 14px 80px 18px 36px;
+    cursor: pointer;border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+    transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform 
+    cubic-bezier(.155,1.105,.295,1.12);
+    padding: 14px 80px 18px 36px;
+    cursor: pointer;
+}
+
+.Card:hover{
+   transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+ </style>
+</head>
+<body>
+  <!--second navigation bar -->
+  <div>
+  <nav class="navbar navbar-expand-dark navbar-light bg-dark">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+    <a class="navbar-brand nav-link fa fa-envelope" style="color: white" href="#">info@example.com</a>
+     <a class="navbar-brand nav-link fa fa-phone" style="color: white" href="#">9826122818</a>
+  </li>
+    </ul>
+
+    <ul>
+    <li class="navsocial my-2 my-sm-0">
+          <a href="#" class="fa fa-facebook"></a>
+          <a href="#" class="fa fa-twitter"></a>
+          <a href="#" class="fa fa-google"></a>
+          <a href="#" class="fa fa-linkedin"></a>
+        </li>
+     </ul>   
+    </div>
+  </nav>
+</div>
+<!--second navigation bar end-->
+
+    <!--third navigation bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light my-2 my-sm-0">
+  <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+    <a class="navbar-brand nav-link" style="color:black; font-weight: bold; font-size: 30px;" href="#">Arya Virth Vidya Mandir</a>
+  </li>
+    </ul>
+
+  <ul class="navbar-nav ml-auto">
+  <a class="navbar-brand nav-link" style="color: #669900;" href="#">Home</a>
+  <div class="dropdown">
+   <a class="navbar-brand nav-link " href="#" style="color: #ff0080;"> About us</a>
+   </div>
+</div>
+<div class="dropdown">
+   <a class="navbar-brand nav-link" href="#" style="color: #1ac6ff;"> Facilities </a>
+   </div>
+<div class="dropdown">
+   <a class="navbar-brand nav-link" href="#" style="color: #6600ff;"> Admissions </a>
+   </div>
+<div class="dropdown">
+   <a class="navbar-brand nav-link" href="#" style="color: #e68a00;"> Student </a>
+</div>
+<div class="dropdown">
+   <a class="navbar-brand nav-link" href="#" style="color:#1ac6ff;"> Staff </a>
+</div>
+<a class="navbar-brand nav-link" href="#" style="color: #6600ff;"> Contact us </a>
+  </ul>
+</nav>  
+        <!--third navigation end -->    
+      <!-- slide start-->
+<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'img/slider1-bg.png' %}" style="width:100%; height: auto" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block text font">
+    <h2 style="color: #0033cc; font-weight: bold; text-align: left; margin-top: 60px">Empowering students from</h2>
+    <h2 style="color: #ff9900; font-weight: bold;text-align:left;">small age towards vision.</h2>
+    <p style="color: black; font-style: italic; margin-top: 20px;text-align:left;">With the courage, Confidence, Creativity and Compassion </p>
+    <p style="color: black; font-style: italic; margin-top: 20px;text-align:left;">to make their Unique Contribution in a Diverse and Dynamic World.</p>
+      <button class="button" style="margin-top: 20px;float: left;">Enroll Now</button>
+      </div>
+    </div>
+
+    <div class="carousel-item">
+      <img src="{% static 'img/slider2-bg.png' %}" style="width:100%; height: auto" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block text font">
+    <h2 style="color: #8600b3; text-align:center;">'Fun In School'</h2>
+    <h1 style="color: #ff00ff; font-weight: bold; text-align:center;">Creative Learning</h1>
+    <p style="font-style: italic; font-weight: bold; text-align:center; color: black">Creative Lessons Plans
+  </p>
+    <p style="font-style: italic; font-weight: bold; text-align:center; color: black">1,000+ Worksheets & Craft Sheets
+    </p>
+    <p style="font-style: italic; font-weight: bold; text-align:center; color: black">
+      Weekly Academic Training for Kids
+    </p>  
+    <p style="font-style: italic; font-weight: bold; text-align:center; color: black">
+      Universal Workshop for Childrens
+    </p>
+        <button class="button" style="margin-top: 20px;align-items: center;">Enroll Now</button>
+      </div>
+    </div>
+
+    <div class="carousel-item">
+      <img src="{% static 'img/slider3-bg.png' %}" style="width:100%; height: auto" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block text font">
+        <h2 style="color: #660066; font-weight: bold; text-align:center;">Practical teaching &</h2>
+      <h2 style="color: #e67300; font-weight: bold; text-align:center;">Social Development</h2>
+      <p style="margin-top: 20px; font-style: italic; font-weight: bold;text-align: center;color: black">
+        We aim at success by creating skills necessary for kids
+      </p>
+      <p style="font-style: italic; font-weight: bold;text-align:center;color: black">
+        to enrich & empower in studies &sports.
+      </p>
+        <button class="button" style="margin-top: 20px;align-items: center;">Enroll Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+            <!-- slide end -->
+
+            <!-- card first -->
+<div class="container-fluid" style="background-color: #b3ecff; width: 100%; height: auto;">
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="Card text-white mb-3" style="max-width:18rem; margin-top:40px;border-style: hidden;">
+  <div class="Card-body" style="background-color:#b3ecff">
+    <img src="{% static 'img/palli-team.jpg' %}" style="width:100%; height: auto;" class="d-block w-100" alt="Card image">
+    <h5 class="Card-title" style="color: black;font-weight: bold; text-align: center;">Our Team</h5>
+    </div>
+  </div>    
+  </div>
+
+  <div class="col-lg-3">
+  <div class="Card text-white mb-3" style="max-width: 18rem;margin-top: 40px;border-style: hidden;">
+  <div class="Card-body" style="background-color:#b3ecff">
+    <img src="{% static 'img/palli-kidsenroll.png' %}" style="width:100%; height: auto" class="d-block w-100" alt="Card image">
+    <h5 class="Card-title" style="color: black;font-weight: bold; text-align: center;">Kids Enrollment</h5>
+    </div>
+  </div>    
+  </div>
+
+  <div class="col-lg-3">
+  <div class="Card text-white mb-3" style="max-width: 18rem;margin-top: 40px;border-style: hidden;">
+  <div class="Card-body" style="background-color:#b3ecff">
+    <img src="{% static 'img/palli-alumni.jpg' %}" style="width:100%; height: auto" class="d-block w-100" alt="Card image">
+    <h5 class="Card-title" style="color: black;font-weight: bold; text-align: center;">Alumni Club</h5>
+    </div>
+  </div>    
+  </div>
+
+  <div class="col-lg-3">
+  <div class="Card text-white mb-3" style="max-width: 18rem;  margin-top: 40px;border-style: hidden;">
+  <div class="Card-body" style="background-color:#b3ecff">
+    <img src="{% static 'img/palli-amenities.png' %}" style="width:100%; height: auto" class="d-block w-100" alt="Card image">
+    <h5 class="Card-title" style="color: black;font-weight: bold; text-align: center;">Amenities</h5>   
+  </div>
+  </div>    
+  </div>
+ </div>
+</div>
+          <!--first card end -->
+
+          <!--Second card start-->
+<div class="container-fluid">
+  <h1 style="font-size: 40px; text-align: center; margin-top: 80px; font-weight: bold; font-style: italic;">  
+    Standard Curriculum
+  </h1>
+  <div class="row">
+  <div class="col-lg-4">
+    <div class="Card text-white mb-3" style="max-width:18rem; margin-top:40px;border-style: hidden;">
+      <div class="Card-body">
+      <img src="{% static 'img/palli-kinder.jpg' %}" style="width:100%; height: auto;" class="d-block w-100" alt="Card image">
+      <h5 class="Card-title" style="color: black;font-weight: bold; text-align: center;">
+        kinder (3-6) Years
+      </h5>
+    <p class="Card-text" style="color: black;text-align: center;"> 
+        Cum sociis natoque penatibus et
+        magnis dis parturient montes, nascetur
+       ridiculus mu sdis parturient 
+     </p>
+     <button class="button" style="margin-top: 20px;">Read More</button>
+    </div>
+  </div>    
+  </div>
+
+  <div class="col-lg-4">
+    <div class="Card text-white mb-3" style="max-width:18rem; margin-top:40px;border-style: hidden;">
+    <div class="Card-body">
+    <img src="{% static 'img/palli-elementary.png' %}" style="width:100%; height: auto;"class="d-block w-100" alt="Card image">
+      <h5 class="Card-title" style="color: black;font-weight: bold; text-align: center;">
+        Elementary School
+      </h5>
+    <p class="Card-text" style="color: black; text-align: center;"> 
+        Cum sociis natoque penatibus et
+        magnis dis parturient montes, nascetur
+       ridiculus mu sdis parturient 
+     </p>
+      <button class="button" style="margin-top: 20px;">Read More</button>
+    </div>
+  </div>    
+  </div>
+
+  <div class="col-lg-4">
+    <div class="Card text-white mb-3" style="max-width:18rem; margin-top:40px;border-style: hidden;">
+      <div class="Card-body">
+      <img src="{% static 'img/palli-middle.jpg' %}" style="width:100%; height: auto;" class="d-block w-100" alt="Card image">
+      <h5 class="Card-title" style="color: black;font-weight: bold; text-align: center;">
+        Middle (10-16) Years
+      </h5>
+    <p class="Card-text" style="color: black; text-align: center;"> 
+        Cum sociis natoque penatibus et
+        magnis dis parturient montes, nascetur
+       ridiculus mu sdis parturient 
+     </p>
+      <button class="button" style="margin-top: 20px;">Read More</button>
+    </div>
+  </div>    
+  </div>
+  </div>
+</div>
+          <!--second card end -->
+
+          <!--third card start -->
+
+<div class="container-fluid" style="background-color: #9933ff;">
+  <div class="row">
+  <div class="col-md-6">
+  <h3 style="text-align:left; margin-top:60px; margin-left:50px; color:white; font-weight:bold;">
+    Why Our Schools are the 
+  </h3>
+  <h3  style="text-align: left; margin-left: 50px;color: white; font-weight: bold;"> 
+    Right Fit for Your Child?
+  </h3>
+  <p style="text-align:left; margin-left: 50px;margin-top:30px; color: white;"> 
+    Aliquam lorem ante, dapibus in, viverra quis,feugiat a, tellus.
+  </p>
+  <p style="text-align:left; margin-left: 50px;color: white;">
+    Phasellus viverra nulla ut metus varius laoreet.
+  </p>
+
+  <div class="p-3 mb-2 bg-white rounded-circle" 
+  style="text-align: center; margin-top: 50px;color: black;font-style: italic;font-weight: bold;">
+    Well Trained Professionals
+  </div>
+  <div class="p-3 mb-2 bg-white rounded-circle"
+  style="text-align: center;color: black;font-style: italic;font-weight: bold;">
+    Awesome Infra-Structure
+  </div>
+  <div class="p-3 mb-2 bg-white rounded-circle"
+  style="text-align: center;color: black;font-style: italic;font-weight: bold;">
+    International Lesson Patterns
+  </div>  
+</div>  
+  <div class="col-md-6">
+    <img src="{% static 'img/palli-school.jpg' %}" class="rounded-circle" style="margin-top:40px; margin-bottom:20px; width:100%; height:auto;">
+  </div>
+</div>
+</div>
+    <!--third card end -->
+
+    <!--fourth start -->
+<div class="container-fluid" style="margin-top: 110px;">
+  <div class="row">
+  <div class="col-md-6">
+     <img src="{% static 'img/palli-group.jpg' %}" style="width: 100%; height: auto;">
+  </div>
+
+  <div class="col-md-6">
+  <div class="card" style="border-radius: 4px;background: #fff;box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);background: #fff;box-shadow:0 6px 10px rgba(0,0,0,.08),0 0 6px rgba(0,0,0,.05);width:100%;
+   height: auto ;margin-bottom: 50px;">
+  <h2 style="text-align: center; color: #660066; font-weight: bold;font-style: italic;margin-right: 50px;margin-top: 20px;">Ask About Kids Acts</h1>
+  <div class="mb-3" style="margin-top: 40px;margin-right: 50px;"> 
+      <input type="text" class="form-control rounded-pill" id="formGroupExampleInput" placeholder="Your Name"
+      style="margin-left: 25px;height: 50px;">
+  </div>
+    <div class="mb-3" style="margin-top: 30px;margin-right: 50px;">
+      <input type="email" class="form-control rounded-pill" id="colFormLabelLg" placeholder="Email Address"
+      style="margin-left: 25px;height: 50px;">
+    </div>
+    <div class="mb-3" style="margin-top: 30px;margin-right: 50px;">
+      <input type="text" class="form-control rounded-pill" id="formGroupExampleInput2" placeholder="Phone Number" style="margin-left: 25px;height: 50px; ">
+  </div>
+  <div class="mb-3" style="margin-top: 30px;margin-right: 50px;">
+    <select class="form-control form-select rounded-pill" id="autoSizingSelect" placeholder="Studying Class"
+    style="margin-left: 25px;height: 50px; ">
+      <option selected>Studying Class</option>
+      <option value="1">First std</option>
+      <option value="2">Second std</option>
+      <option value="3">Third std</option>
+    </select>
+  </div>
+  <div class="mb-3" style="margin-top: 30px;margin-right: 50px;"> 
+      <input type="text" class="form-control rounded-pill" id="formGroupExampleInput" placeholder="Type Your Requirements" style="margin-left: 25px;height: 50px; ">
+  </div>
+  <div class="mb-3" style="margin-top: 30px;margin-right: 50px;">
+      <button type="submit" class="button form-control rounded-pill" style="margin-left: 25px;height: 50px; ">Submit Now</button>
+  </div>
+</div>
+  </div>
+    </div>
+  </div>
+</div>
+        <!--fourth end -->
+
+        <!-- fifth start --> 
+<div class="container-fluid" style="background-color:#739900;">
+  <h1 style="font-size: 40px; text-align: center; margin-top: 50px; font-weight: bold; font-style: italic; color: white;">  
+    Our Qualified Staffs
+  </h1>
+  <div class="row">
+      <div class="col-lg-3">
+    <div class="Card text-white mb-3" style="max-width:18rem; margin-top:40px;margin-left: 20px ;border-style: hidden; border-radius:20px;margin-top:40px;">
+  <div class="Card-body">
+    <img src="{% static 'img/palli-john.png' %}" style="width:100%; height: auto;margin-left: 20px" class="d-block w-100" alt="Card image">
+    <p style="color:black;font-weight: bold; text-align: center;">Instructor/ Teacher</p>
+  <h5 class="Card-title" style="color:black;font-weight: bold; text-align: center;">John Parekar</h5>
+  </div>    
+  </div>
+  <button class="button fa fa-phone" style="margin-top: 20px; margin-left: 90px;">  0987654321</button>
+</div>
+
+<div class="col-lg-3">
+    <div class="Card text-white mb-3" style="max-width:18rem; margin-top:40px;margin-left: 20px ;border-style: hidden; border-radius:20px;margin-top:40px;">
+  <div class="Card-body">
+    <img src="{% static 'img/palli-girl.jpg' %}" style="width:100%; height:auto;margin-left: 20px" class="d-block w-100" alt="Card image">
+    <p style="color:black;font-weight: bold; text-align: center;">Instructor/ Teacher</p>
+  <h5 class="Card-title" style="color:black;font-weight: bold; text-align: center;">Lida Joans</h5>
+      </div> 
+  </div>
+  <button class="button fa fa-phone" style="margin-top: 20px; margin-left: 90px;">  0987654321</button>
+</div>
+
+<div class="col-lg-3">
+    <div class="Card text-white mb-3" style="max-width:18rem; margin-top:40px;margin-left: 20px ;border-style: hidden; border-radius:20px;margin-top:40px;">
+  <div class="Card-body">
+    <img src="{% static 'img/palli-faculty.jpg' %}" style="width:100%; height: auto;margin-left: 20px" class="d-block w-100" alt="Card image">
+    <p style="color:black;font-weight: bold; text-align: center;">Instructor/ Teacher</p>
+  <h5 class="Card-title" style="color:black;font-weight: bold; text-align: center;">Michel Joarden</h5>
+  </div>    
+  </div>
+  <button class="button fa fa-phone" style="margin-top: 20px; margin-left: 90px;">  0987654321</button>
+</div>
+
+<div class="col-md-3">
+    <div class="Card text-white mb-3" style="max-width:18rem; margin-top:40px;margin-left: 20px ;border-style: hidden; border-radius:20px;margin-top:40px;">
+  <div class="Card-body">
+    <img src="{% static 'img/palli-girl2.jpg' %}" style="width:100%; height: auto;margin-left: 20px" class="d-block w-100" alt="Card image">
+    <p style="color:black;font-weight: bold; text-align: center;">Instructor/ Teacher</p>
+  <h5 class="Card-title" style="color:black;font-weight: bold; text-align: center;">Lilly Thomas</h5>
+  </div>    
+  </div>
+  
+  <button class="button fa fa-phone" style="margin-top: 20px; margin-left: 90px;">  0987654321</button>
+</div>
+</div>
+</div>
+                 <!--fifth end -->
+                 <hr class="mt-12 mb-7" style="margin-top: 100px;">
+
+                  <!--seventh start -->
+
+<div class="container-fluid" style="width: 100%; height: auto;margin-top: 80px;">
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="Card text-white mb-3" style="max-width:18rem; margin-top:40px;border-style: hidden;">
+  <div class="Card-body">
+    <img src="{% static 'img/palli-kidsenroll.png' %}" style="width:100%; height: auto;" class="d-block w-100" alt="Card image">
+    <h3 class="Card-title" style="color: black;font-weight: bold; text-align: center;margin-top: 20px;">
+      2453
+    </h3>
+    <h5 class="Card-title" style="color: black;font-weight: bold; text-align: center;margin-top: 10px;">
+      Student Passed
+    </h5>
+    </div>
+  </div>    
+  </div>
+
+  <div class="col-lg-3">
+  <div class="Card text-white mb-3" style="max-width: 18rem;margin-top: 40px;border-style: hidden;">
+  <div class="Card-body">
+    <img src="{% static 'img/palli-staff.png' %}" style="width:100%; height: auto" class="d-block w-100" alt="Card image">
+    <h3 class="Card-title" style="color: black;font-weight: bold; text-align: center;margin-top: 20px;">
+      678
+    </h3>
+    <h5 class="Card-title" style="color: black;font-weight: bold; text-align: center;margin-top: 10px;">
+    Qualified Staffs</h5>
+    </div>
+  </div>    
+  </div>
+
+  <div class="col-lg-3">
+  <div class="Card text-white mb-3" style="max-width: 18rem;margin-top: 40px;border-style: hidden;">
+  <div class="Card-body">
+    <img src="{% static 'img/palli-courses.jpg' %}" style="width:100%; height: auto" class="d-block w-100" alt="Card image">
+    <h3 class="Card-title" style="color: black;font-weight: bold; text-align: center;margin-top: 20px;">
+      52
+    </h3>
+    <h5 class="Card-title" style="color: black;font-weight: bold; text-align: center;margin-top: 10px;">
+    Courses In Trails</h5>
+    </div>
+  </div>    
+  </div>
+
+  <div class="col-lg-3">
+  <div class="Card text-white mb-3" style="max-width: 18rem;  margin-top: 40px;border-style: hidden;">
+  <div class="Card-body">
+    <img src="{% static 'img/palli-equipments.jpg' %}" style="width:100%; height: auto" class="d-block w-100" alt="Card image">
+    <h3 class="Card-title" style="color: black;font-weight: bold; text-align: center;margin-top: 20px;">
+      936
+    </h3>
+    <h5 class="Card-title" style="color: black;font-weight: bold; text-align: center;margin-top: 10px;">Equipments</h5>   
+  </div>
+  </div>    
+  </div>
+ </div>
+</div>
+              <!--seventh end -->
+
+              <!-- eighth start -->
+<div class="container-fluid" style="background-color: #80dfff; margin-top: 100px;">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card rounded" style="margin-top:100px;border-radius: 80px;max-width: 30rem;
+      height: auto;cursor: pointer;">
+      <img src="{% static 'img/palli-teach.jpg' %}" class="card-img-top" alt="card image" style="width: 100%;height: auto;">
+      <div class="rounded-pill" style="background-color:#e600ac;text-align: center;width: 40%; height:auto;
+      color: white;font-weight: bold; ">
+        <p style="margin-top: 10px;">November 19, 2019</p>
+      </div>
+      <div class="card-body">
+        <h4 class="card-title" style="font-weight: bold;margin-top: 20px;">
+          A fun toddler coloring training on classroom
+        </h4>
+        <p class="card-text" style="margin-top: 30px;">
+          Beautiful branding for changes by Never Now in Australia. changes is a platform for open discussion in an inclusive and collaborative environment, providing the...
+        </p>
+      </div>
+    </div>
+    </div>
+    
+    <div class="col-md-6">
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="col">
+    <div class="card rounded" style="margin-top: 100px;cursor: pointer;border-radius: 80px;max-width: 30rem;
+    height: auto;align-items: center;">
+      <img src="{% static 'img/palli-kidplay2.jpg' %}" class="card-img-top" alt="card image" style="width: 100%;height: auto;">
+      <div class="rounded-pill" style="background-color:#6699ff;text-align: center;width: 60%; height:auto;
+      color: white;font-weight: bold;">
+        <p style="text-align: center;margin-top: 10px;">November 19, 2019</p>
+      </div>
+      <div class="card-body">
+        <h6 class="card-title"  style="font-weight: bold;margin-top: 10px;text-align: center;">
+          Find out if a school fits the faimly's needs
+        </h6>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card rounded" style="margin-top: 100px;cursor: pointer;border-radius: 80px;max-width: 30rem;
+    height: auto;align-items: center;">
+      <img src="{% static 'img/palli-kidplaynew.jpg' %}" class="card-img-top" alt="card image" style="width: 100%;height: auto;">
+      <div class="rounded-pill" style="background-color:#00cc66;text-align: center;width: 60%; height:auto;
+      color: white;font-weight: bold;">
+        <p style="text-align: center;margin-top: 10px;">November 19, 2019</p>
+      </div>
+      <div class="card-body">
+        <h6 class="card-title" style="font-weight: bold;margin-top: 10px;text-align: center;">
+          Summer math & literacy centres for kids
+        </h6>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card rounded" style="margin-top: 20px;cursor: pointer;border-radius: 80px;max-width: 30rem;
+    height: auto;align-items: center;">
+      <img 
+      ="{% static 'img/palli-kidteacher.jpg' %}" class="card-img-top" alt="card image" style="width: 100%;height: auto;">
+      <div class="rounded-pill" style="background-color:#e600ac;text-align: center;width: 40%; height:auto;
+      color: white;font-weight: bold;">
+        <p style="text-align: center;margin-top: 10px;">July 19, 2019</p>
+      </div>
+      <div class="card-body">
+        <h6 class="card-title" style="font-weight: bold;margin-top: 10px;text-align: center;">
+          Conversation rhymes improve kids listening 
+        </h6>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card rounded" style="margin-top: 20px;cursor: pointer;border-radius: 80px;max-width: 30rem;
+    height: auto;align-items: center;">
+      <img src="{% static 'img/palli-kidteacher2new.jpg' %}" class="card-img-top" alt="card image" style="width: 100%;height: auto;">
+      <div class="rounded-pill" style="background-color:#66b3ff;text-align: center;width: 60%; height:auto;
+      color: white;font-weight: bold;">
+        <p style="text-align: center; margin-top: 10px;">September 10, 2019</p>
+      </div>
+      <div class="card-body">
+        <h6 class="card-title" style="font-weight: bold;margin-top: 10px;text-align: center;">
+          Classroom management techniques for new tutors
+        </h6>
+      </div>
+    </div>
+  </div>
+</div>   
+      </div>
+    </div>
+  </div>
+</div>
+              <!-- eighth end -->
+                     <!--footer start-->
+<div class="container-fluid" style="background-color: #4d4dff;margin-top:50px;">
+  <div class="row" style="color: white">
+    <div class="col-sm-3" style="margin-top: 30px;">
+      <h3 style="font-weight: bold;">Arya Virth Vidya Mandir</h3>
+      <p style="margin-top: 20px;">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+      </p>
+      <div>
+         <ul>
+      <li class="my-2 my-sm-0" style="float: left;">
+          <a href="#" class="fa fa-facebook"></a>
+          <a href="#" class="fa fa-twitter"></a>
+          <a href="#" class="fa fa-google"></a>
+          <a href="#" class="fa fa-linkedin"></a>
+        </li>
+     </ul>   
+      </div>
+    </div>
+    <div class="col-sm-3" style="margin-top: 30px;">
+      <h3 style="font-weight: bold;">About School</h3>
+      <div>
+      <a href=""style="margin-top: 20px;color: white; ">
+        General Information
+      </a>
+    </div>
+    <div>
+      <a href=""style="margin-top: 20px;color: white; ">
+        Who We Are
+      </a>
+    </div>
+    <div>
+      <a href=""style="margin-top: 20px;color: white; ">
+        Our Teachers
+      </a>
+    </div>
+    <div>
+      <a href=""style="margin-top: 20px;color: white; ">
+        School History
+      </a>
+    </div>
+    <div>
+      <a href=""style="margin-top: 20px;color: white; ">
+        Specialized Programme
+      </a>
+    </div>
+    <div>
+      <a href=""style="margin-top: 20px;color: white; ">
+        Language Training
+      </a>
+    </div>
+    </div>
+    <div class="col-sm-3" style="margin-top: 30px;">
+      <h3 style="font-weight: bold;">Recent Posts</h3>
+      <p style="margin-top: 20px;">
+        Reading practice for the students
+        November 19, 2019</p>
+      <hr>
+      <p>
+        A team dedicated to football matches
+        November 19, 2019
+      </p>
+    </div>
+    <div class="col-sm-3" style="margin-top: 30px;">
+      <h3 style="font-weight: bold;">Keep In Touch</h3>
+      <p style="margin-top: 20px;">
+        Our school is the perfect environment for language studies.
+      </p>
+       <div>
+      <a href="#" style="color: white;">
+          79200 Iskandar Puteri Malaysia mattis 
+        </a> 
+      </div>
+     
+      <div>
+      <a href="#" class="fa fa-phone" style="color: white;">
+        9826122818
+      </a> 
+      </div>
+      <div>
+      <a href="#" class="fa fa-envelope" style="color: white;">support@domain.com</a>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>  
+    
+<div class="container-fluid" style="background-color:#4054B2;;color: white;text-align: center;padding: 12px 14px">
+  <p>© 2020 Arya Virth Vidya Mandir – All Rights Reserved</p>
+</div>
+              <!--footer end -->            
+</body>
+</html>

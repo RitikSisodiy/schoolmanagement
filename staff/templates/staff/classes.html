@@ -1,0 +1,170 @@
+{% extends 'staff/basic.html' %}
+{% block page_title %}{% if subjects %}Class {{subjects.0.standard}} all subjects{% else %}All classes{% endif %}{% endblock %}
+{% block table %}
+{% if messages %}
+                            <div class="form-group">
+                            <div class="col-12">
+                                {% for message in messages %}
+                                {% if message.tags == "error" %}
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                    {{ message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                {% elif message.tags == "success" %}
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                    {{ message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                            </div>
+                            {% endif %}
+    {% if classes %}
+    <div class="row">
+        <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal"
+        data-backdrop='static' data-keyboard='false'>
+        +Add-Class
+    </button>
+    </div>
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Subject Details</h3>
+
+                <div class="card-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                <thead>
+                    <tr>
+                        <th>SN</th>
+                        <th>CLASS</th>
+                        <th>SUBJECTS</th>
+                                                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in classes %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{row.standard}}</td>
+                        <td><a href="/staff/classes/?id={{row.id}}" class="btn btn-outline-primary btn-sm">View-subjects</a></td>
+                                                    </tr>
+                    {% endfor %}
+                    
+                </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+            </div>
+        <!-- /.card -->
+
+    </div>
+</div>
+{% endif %}
+{% if subjects %}
+
+
+
+<!-- Modal -->
+<div class="row">
+    <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal"
+    data-backdrop='static' data-keyboard='false'>
+    +Add-Subject
+</button>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Subject Details</h3>
+
+                <div class="card-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <table class="display table table-striped table-bordered dataTable my-3">
+                <thead>
+                    <tr>
+                        <th>SN</th>
+                        <th>SUBJECTS</th>
+                        <th>Delete</th>
+                                                                </tr>
+                </thead>
+                <tbody>
+                    {% for row in subjects %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{row.subject}}</td>
+                        <td><a href="/staff/classes/?delete={{row.id}}&id={{subjects.0.standard.id}}"
+                                class="btn btn-outline-danger btn-sm">Delete</a></td>
+                                                                </tr>
+                    {% endfor %}
+                    
+                </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+            </div>
+        <!-- /.card -->
+
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block formtitle %}
+{% if form %}
+Add-Subject
+{% endif %}
+{% if formstd %}
+Add-Class
+{% endif %}
+{% endblock %}
+{% block addform %}
+{% if form %}
+<form method="POST">{% csrf_token %}
+    <div class="">
+
+        {{form}}
+
+        <button type="submit" class="btn btn-outline-primary  my-5"> Add-Subject </button>
+    </div>
+</form>
+{% endif %}
+{% if formstd %}
+<form action="" method="GET">{% csrf_token %}
+    {{formstd}}
+    <button type="submit" class="btn btn-outline-primary  my-5"> Add-Class </button>
+</form>
+{% endif %}
+
+{% endblock %}

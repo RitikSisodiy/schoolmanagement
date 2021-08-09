@@ -1,0 +1,58 @@
+{% extends 'staff/basic.html' %}
+{% block table %}
+<section class="content">
+    <div class="container_fluid">
+<nav class="navbar navbar-light bg-primary">
+    <div class="container-fluid">
+        <h2 class="text-light">Teaching Schedule</h2>
+    </div>
+  </nav>
+  <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" data-backdrop = 'static' data-keyboard = 'false'>
+    Add-Schedule
+  </button>
+
+
+    <h2 style="color: red;">{{message}}</h2>
+{% if schedule %}
+<center>
+
+<table class="table table-dark">
+    <thead>
+<tr>
+    <th>Class</th>
+    <th>Subject</th>
+    <th>From</th>
+    <th>TO</th>
+    <th>Action</th>
+</tr>
+</thead>
+<tbody>
+{% for row in schedule %}
+<tr class="{% if forloop.counter|divisibleby:2 == False %}bg-primary{% endif %}">
+    <td>{{row.Class}}</td>
+    <td>{{row.subject}}</td>
+    <td>{{row.timefrom}}</td>
+    <td>{{row.timeto|time}}</td>
+    <td><a href="/staff/schedule/?schedule={{row.id}}" class="btn btn-outline-danger btn-sm">Delete</a></td>
+</tr>
+
+{% endfor %}
+</tbody> 
+</table>
+{% else %}
+    <br><br><h2>You Have No schedule ......!</h2>
+</center>
+{% endif %}
+{% endblock %}
+{% block addform %}
+
+    <form action="/staff/schedule/" method="POST">{% csrf_token %}  
+        {{forms}}
+        <button type="submit" class="btn btn-outline-primary  my-5">Add-schedule</button>
+    </form>
+{% endblock %}
+        
+</div>
+</section>
+
+{% block formtitle %}Add Schedule{% endblock %}

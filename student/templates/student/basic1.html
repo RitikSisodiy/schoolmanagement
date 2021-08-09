@@ -1,0 +1,22 @@
+{% extends 'basic.html' %}
+{% block body %}
+{% load static %}
+
+<style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      
+    }
+    table{
+        width: -webkit-fill-available;
+    }
+    </style>
+<h2>Welcome to the Staff app</h2>
+
+<a href="/viewresult">view-result</a>
+<a href="/signout">logout</a>
+
+<h2>welcome {{user.first_name}} {{user.last_name}}</h2>
+{% block table %}{% endblock %}
+{% endblock %}

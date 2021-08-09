@@ -1,0 +1,114 @@
+{% extends 'staff/basic.html' %}
+{% block table %}
+
+<nav class="navbar navbar-light bg-primary">
+    <div class="container-fluid">
+        <h2 class="text-light">Dashboard</h2>
+        <div class="d-flex">
+            <p class="text-light">Welcome : {{request.user.first_name}} {{request.user.last_name}}</p>
+        </div>
+    </div>
+</nav>
+<center>
+    <div class="row container-fluid my-2">
+        <div class="col icon-bg"><a href="">
+            <h2 class="icon-lg"><i class="bi bi-person-plus-fill"></i></h2>
+            <h4>Users</h4></a>
+        </div>
+        <div class="col icon-bg"><a href="/staff/schedule/">
+            <h2 class="icon-lg"><i class="bi bi-people-fill"></i></h2>
+            <h4> Teaching schedule</h4></a>
+        </div>
+        <div class="col icon-bg"><a href="/staff/mystudent">
+            <h2 class="icon-lg"><i class="bi bi-book"></i></h2>
+            <h4>Students</h4></a>
+        </div>
+        <div class="col icon-bg"><a href="">
+            <h2 class="icon-lg"><i class="bi bi-card-checklist"></i></h2>
+            <h4>Attendence</h4></a>
+        </div>
+    </div>
+    <div class="row container-fluid my-2">
+        <div class="col icon-bg"><a href="">
+            <h2 class="icon-lg"><i class="bi bi-intersect"></i></h2>
+            <h4>Section</h4></a>
+        </div>
+        <div class="col icon-bg"><a href="/staff/classes">
+            <h2 class="icon-lg"><i class="bi bi-layout-wtf"></i></h2>
+            <h4>Classes</h4></a>
+        </div>
+        <div class="col icon-bg"><a href="/staff/classes/subjects/">
+            <h2 class="icon-lg"><i class="bi bi-journal-code"></i></h2>
+            <h4>Subject</h4></a>
+        </div>
+        <div class="col icon-bg"><a href="">
+            <h2 class="icon-lg"><i class="bi bi-clipboard"></i></h2>
+            <h4>Reports</h4></a>
+        </div>
+    </div>
+    <div class="row container-fluid my-2">    
+        <div class="col icon-bg"><a href="">
+            <h2 class="icon-lg"><i class="bi bi-newspaper"></i></h2>
+            <h4>Accounts</h4></a>
+        </div>
+        <div class="col icon-bg"><a href="">
+            <h2 class="icon-lg"><i class="bi bi-clipboard-data"></i></h2>
+            <h4>Expenses</h4></a>
+        </div>
+        <div class="col icon-bg"><a href="">
+            <h2 class="icon-lg"><i class="bi bi-person-dash"></i></h2>
+            <h4>Non-Teaching Staff</h4></a>
+        </div>
+    </div>
+    <div class="row container-fluid my-2">
+    
+
+    </div>
+</center>
+<table class="display table table-striped table-bordered dataTable my-3">
+    <tr>
+        <th>Field</th>
+        <th>value</th>
+    </tr>
+    {% for instance in data %}
+    {% for field, value in instance.fields.items %}
+    {% if field == 'user' %}
+    <tr>
+        <td>First Name</td>
+        <td>{{user.first_name}}</td>
+    </tr>
+    <tr>
+        <td>Last Name</td>
+        <td>{{user.last_name}}</td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td>{{user.email}}</td>
+    </tr>
+    <tr>
+        <td>username</td>
+        <td>{{user.username}}</td>
+    </tr>
+    {% else %}
+    <tr>
+        <td>{{ field }}</td>
+        {%if field == 'status'  %}
+        <td>{% if value %}<p style="color: green;">verified</p> {% else %}<p style="color: red;">Not verified <a
+                    href="/sendmail/?role=staff">resend mail</a></h2> {% endif %}</p>
+        </td>
+        {% elif field == 'TC' or field == 'castcertificate' %}
+        <td><a href="/media/{{value}}">view-now</a></td>
+        {% elif field == 'phonestatus' %}
+        <td>{% if value %}<p style="color: green;">verified</p> {% else %}<p style="color: red;">Not verified <a
+                    href="/verifyphone/">resend sms</a></h2> {% endif %}</p>
+        </td>
+        {% else %}
+        <td>{{ value }}</td>
+        {% endif %}
+    </tr>
+    {% endif     %}
+    {% endfor %}
+    {% endfor %}
+</table>
+
+{% endblock %}

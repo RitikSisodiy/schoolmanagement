@@ -1,0 +1,110 @@
+{% extends 'staff/basic.html' %}
+{% block page_title %}Manage Student{% endblock page_title %}
+
+{% block table %}
+
+<center>
+{% if myclass %}
+  <div class="row">
+
+    <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">All Classes</h3>
+
+                <div class="card-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <table class="display table table-striped table-bordered dataTable my-3">
+                <thead>
+                    <tr>
+                        <th scope="col">SNO</th>
+        <th scope="col">class</th>
+        <th scope="col">Students</th>
+        <th scope="col">action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in myclass %}
+        <tr class="">
+            <th scope="row">{{forloop.counter}}</th>
+        <th scope="row">{{row.standard}}</th>
+        <td>{{row.studentregister_set.all|length}} Students</td>
+        <td><a href="/staff/mystudent/{{row.standard}}" class="btn btn-outline-primary">View-students</a></td>
+       </tr>
+        {% endfor %}
+                    
+                </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+            </div>
+        <!-- /.card -->
+
+    </div>
+</div>
+{% endif %}
+{% if mystudent %}
+<div class="row">
+
+    <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Student Details</h3>
+
+                <div class="card-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <table class="display table table-striped table-bordered dataTable my-3">
+                <thead>
+                    <tr>
+                        <th>SN.</th>
+                        <th>Name</th>
+                        <th>Roll No.</th>
+                        <th>Result</th>
+                        <th>Info</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in mystudent %}
+        <tr class="">
+            <td>{{forloop.counter}}</td>
+            <td>{{row.user.first_name}} {{row.user.last_name}}</td>
+            <td>{{row.id|add:1000}}</td>
+            <td><a href="/staff/result/{{row.standard}}/?student={{row.user.first_name}} {{row.user.last_name}}&stuid={{row.id}}" class="btn btn-outline-primary ">view-result</a></td>
+            <th><a href="/staff/info/{{row.standard}}/?student={{row.user.first_name}} {{row.user.last_name}}&id={{row.id}}" class="btn btn-outline-info ">view-Info</a></th>
+        </tr>
+        {% endfor %}
+                    
+                </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+            </div>
+        <!-- /.card -->
+
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,157 @@
+{% extends 'staff/basic.html' %}
+{% block page_title %}Dashboard{% endblock page_title %}
+
+{% block table %}
+<section class="content">
+<div class="container_fluid">
+  {% if messages %}
+                            <div class="form-group">
+                            <div class="col-12">
+                                {% for message in messages %}
+                                {% if message.tags == "error" %}
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                    {{ message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                {% elif message.tags == "success" %}
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                    {{ message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                            </div>
+                            {% endif %}
+<div class="row">
+    
+    <div class="col-md-4 mt-5 mb-3">
+        <div class="card card-hover">
+            <div class="dash-box text-white">
+                <h1 class="dash-icon">
+                    <i class="nav-icon fas fa-user-graduate mb-1 font-16"></i>
+                </h1>
+                <div class="dash-content">
+                    <h5 class="mb-0 mt-1">{{noofstudent}}</h5>
+                    <small class="font-light">Total Students</small>
+                <div>
+                  <a href="{% url 'mystudent' %}" class="small-box-footer text-light ">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mt-5 mb-3">
+        <div class="card card-hover">
+            <div class="dash-box text-white">
+                <h1 class="dash-icon">
+                    <i class="fas fas fa-chalkboard-teacher mb-1 font-16"></i>
+                </h1>
+                <div class="dash-content">
+                    <h5 class="mb-0 mt-1">{{noofstaff}}</h5>
+                    <small class="font-light">Total Staffs</small>
+                <div>
+                  <a href="{% url 'managestaff' %}" class="small-box-footer  text-light">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mt-5 mb-3">
+      <div class="card card-hover">
+          <div class="dash-box text-white">
+              <h1 class="dash-icon">
+                  <i class="fas fa-chalkboard mb-1 font-16"></i>
+              </h1>
+              <div class="dash-content">
+                  <h5 class="mb-0 mt-1">{{noofclass}}</h5>
+                  <small class="font-light">Total Class</small>
+              <div>
+                <a href="{% url 'classes' %}" class="small-box-footer  text-light">More info <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-md-4 mt-5 mb-3">
+    <div class="card card-hover">
+        <div class="dash-box text-white">
+            <h1 class="dash-icon">
+                <i class="fas fa-book mb-1 font-16"></i>
+            </h1>
+            <div class="dash-content">
+                <h5 class="mb-0 mt-1">{{noofsubject}}</h5>
+                <small class="font-light">Total Subjects</small>
+            <div>
+              <a href="{% url 'subjects' %}" class="small-box-foote text-light">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+      {% endblock %}
+
+      {% block custom_js %}
+
+      <script>
+         var ctxP = document.getElementById("pieChart").getContext('2d');
+  var myPieChart = new Chart(ctxP, {
+    type: 'pie',
+    data: {
+      labels: ["student", "staff",],
+      datasets: [{
+        data: [{{noofstudent}},{{noofstaff}}],
+        backgroundColor: ["#F7464A", "#46BFBD", ],
+        hoverBackgroundColor: ["#FF5A5E", "#5AD3D1",]
+      }]
+    },
+    options: {
+      responsive: true
+    }
+  });
+  
+        </script>
+        <script>
+var ctxP = document.getElementById("donutChart").getContext('2d');
+  var colorlist = ["#9ACD32","#FFFF00","#F5DEB3","#FF6347","#4682B4","#00FF7F","#8B4513","#800080","#DB7093","#808000","#FFA07A","#B22222","#8B0000","#006400","#000000"]
+  var myPieChart = new Chart(ctxP, {
+    type: "pie",
+    data: {
+      labels: {{subnamelist|safe}},
+      datasets: [{
+        data: {{subcountlist}},
+        backgroundColor: colorlist,
+        hoverBackgroundColor: colorlist,
+      }]
+    },
+    options: {
+      responsive: true
+    }
+  });  
+
+  var ctxP = document.getElementById("pieChart2").getContext('2d');
+  var colorlist = ["#9ACD32","#FFFF00","#F5DEB3","#FF6347","#4682B4","#00FF7F","#8B4513","#800080","#DB7093","#808000","#FFA07A","#B22222","#8B0000","#006400","#000000"]
+  var myPieChart = new Chart(ctxP, {
+    type: "pie",
+    data: {
+      labels: {{subnamelist|safe}},
+      datasets: [{
+        data: {{studentcountlist}},
+        backgroundColor: colorlist,
+        hoverBackgroundColor: colorlist,
+      }]
+    },
+    options: {
+      responsive: true
+    }
+  });        
+  
+  </script>
+    
+{% endblock %}   

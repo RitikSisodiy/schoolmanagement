@@ -1,0 +1,10 @@
+{% extends 'basic.html' %}
+{% block body %}
+<form action="{{request.path}}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+    <input type="hidden" value="{{for}}" name='for'>   
+    <table>
+    {{form.as_table}}
+</table>
+    <input type="submit" value="verify">
+</form>
+{% endblock %}

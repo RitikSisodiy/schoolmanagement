@@ -1,0 +1,64 @@
+{% load static %}
+
+    
+    <div class="slide-menu">
+            <div class="logo-div row">
+              <div class="col-4"><img src="/media/{{schoolinfo.icon}}" class="logo" alt="" style="width: 100%; margin-left: 11px;"></div>
+              <div class="col-8" style="">{{schoolinfo.name}}</div>
+            </div>
+            <div class="navigation">
+
+           <ul>
+           
+          <!-- Add icons to the links using the .nav-icon class
+                with font-awesome or any other icon font library -->
+            
+            <li class="nav-item">
+              {% url 'student' as student_home %}
+              <a href="{{ student_home }}" class="nav-link {% if request.path == student_home %} active {% endif %}">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                  Home
+                  {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'viewattendance' as student_view_attendance %}
+              <a href="{{ student_view_attendance }}" class="nav-link {% if request.path == student_view_attendance %} active {% endif %}">
+                <i class="nav-icon fas fa-calendar-alt"></i>
+                  View Attendance
+                  {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'viewresult' as student_view_result %}
+              <a href="{{ student_view_result }}" class="nav-link {% if request.path == student_view_result %} active {% endif %}">
+                <i class="nav-icon fas fa-tasks"></i>
+                  View Result
+                  {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'studentleave' as student_apply_leave %}
+              <a href="{{ student_apply_leave }}" class="nav-link {% if request.path == student_apply_leave %} active {% endif %}">
+                <i class="nav-icon fas fa-envelope-open-text"></i>
+                  Apply for Leave
+                  {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+              </a>
+            </li>
+
+            <li class="nav-item">
+              {% url 'test' as student_feedback %}
+              <a href="{{ student_feedback }}" class="nav-link {% if request.path == student_feedback %} active {% endif %}">
+                <i class="nav-icon fas fa-comments"></i>
+                  Send Feedback
+                  {% comment %} <span class="right badge badge-danger">New</span> {% endcomment %}
+              </a>
+            </li>
+
+
+          </ul>    
+            </div>
+        </div>

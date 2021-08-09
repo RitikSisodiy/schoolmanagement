@@ -1,0 +1,90 @@
+{% extends 'staff/basic.html' %}
+{% block table %}
+<style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    </style>
+{% if student %}
+<h2>student</h2>
+<table>
+    <tr>
+        <th>student</th>
+        <th>Email</th>
+        <th>View</th>
+    </tr>
+    {% for row in student %}
+    <tr>
+        <td>{{row.user.first_name}} {{row.user.last_name}}</td>
+        <td>{{row.user.email}}</td>
+        <td><a href="/staff/student/?student={{row.user.first_name}} {{row.user.last_name}}&id={{row.id}}">view</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Student Information</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                
+
+                    
+                            {% comment %} Display Messages {% endcomment %}
+                            {% if messages %}
+                            <div class="form-group">
+                            <div class="col-12">
+                                {% for message in messages %}
+                                {% if message.tags == "error" %}
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                    {{ message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                {% elif message.tags == "success" %}
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                    {{ message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                            </div>
+                            {% endif %}
+                        
+
+                    <div class="card-body">
+                        <form role="form" method="POST" action="">
+                            {% csrf_token %}
+                            {{form1.as_p}}
+                            {{form.as_p}}
+                        
+                    </div>
+                    <!-- /.card-body -->
+
+                    <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Update Student</button>
+                    </div>
+                </form>
+                </div>
+                <!-- /.card -->
+
+            </div>
+        </div>
+
+    </div><!-- /.container-fluid -->
+  </section>
+
+{% endif %}
+{% endblock %}

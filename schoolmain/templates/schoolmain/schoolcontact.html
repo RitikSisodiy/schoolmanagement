@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<head>
+  {% load static %}
+    <title>Contact us page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Bootstrap -->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+   <link href='https://fonts.googleapis.com/css?family=Charm' rel='stylesheet'>
+      <!-- /Bootstrap -->
+     
+</head>
+<body>
+  <!-- ///////////////////////Topbar////////////////////////////////////////// -->
+  <nav id=nav1>
+    <div class="container d-flex">
+       <div class="contact-info mr-auto">
+          <i class="fa fa-envelope-open" id="mail"></i><a href="#" id="link">contact@example.com</a>
+          <a href="#" id="link"> <i class="fa fa-phone-square" id="phone"></i> {{info.phone}}</a>
+       </div>
+       <div class="socialtop">
+          <div class='top-social'>
+             <a href='#'><i class='fa fa-facebook'></i></a>
+             <a href='#'><i class='fa fa-twitter'></i></a>
+             <a href='#'><i class='fa fa-instagram'></i></a>
+             <a href='#'><i class='fa fa-pinterest'></i></a>
+             <a href="#"><i class='fa fa-youtube'></i></a>
+          </div>
+       </div>
+    </div>
+ </nav>
+
+<!-- /////////////////////Topbar End //////////////////////////////////////////-->
+
+
+
+<!--/////////////////////// Navbar //////////////////////////////////////////-->
+<nav class="navbar navbar-expand-lg navbar-light"> 
+     
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <img src="{% static 'img/nav logo.jpg' %}" width="300px" height="50px" id="logo">
+      <b>  <ul class="navbar-nav mr-auto" id="unorder">        
+        <li class="nav-item dropdown">
+             <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+              Home
+            </a>
+          </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link " href="#" id="navbarDropdown-1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            About
+          </a>
+          <div class="dropdown-menu"  aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" id="item-1" href="#">About Us</a><hr>
+            <a class="dropdown-item"  id="item-1" href="#">Gallary</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" id="item-1" href="#">Gallary Detail</a>
+          </div>
+        </li>
+        
+        <li class="nav-item dropdown">
+            <a class="nav-link" href="#" id="navbarDropdown-2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Facilities
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" id="item-2" href="#">Bright Classroom</a><hr>
+              <a class="dropdown-item" id="item-2" href="#">Lab & Classroom</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" id="item-2" href="#">Meeting Hall</a>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" id="navbarDropdown-3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Blog
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" id="item-3" href="#">Blog List</a><hr>
+              <a class="dropdown-item" id="item-3" href="#">Blog Detail</a>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" id="navbarDropdown-4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Addmission
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" id="item-4" href="#">Enrollment</a><hr>
+              <a class="dropdown-item" id="item-4" href="#">Faq</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" id="item-4" href="#">High School</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" id="navbarDropdown-5" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Shop
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" id="item-6" href="#">Cart</a><hr>
+              <a class="dropdown-item" id="item-6" href="#">Faq</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" id="item-6" href="#">Product list</a>
+            </div>
+          </li>
+
+
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Alumini
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" id="item-5" href="#">Alumini Meet</a><hr>
+              <a class="dropdown-item" id="item-5" href="#">Event</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" id="item-5" href="#">Team</a>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" id="navbarDropdown-6" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Contact
+            </a>
+          </li>
+      </ul></b>
+    </div>
+  </nav> 
+  <!--//////////////////////////////// Navbar//////////////////////////////////////////// -->
+
+    <!--///////////////////////////// first container contact/////////////////////////////////-->
+
+    <div class="container-fluid" id="fluid-1">
+        
+      <img src="{% static 'img/B10.jpg' %}" alt="Notebook" style="width:100%;" height="400px">
+      
+      <div id="content">
+        <h1 class="h1-1">Contact</h1>
+        <!--Breadcrumb Pagination-->
+    
+      <ul class="breadcrumb1" id="breadcrumb">
+        <li><a href="/school" class="a1">Home</a>  <i class="fa fa-caret-right" aria-hidden="true"></i>  <span>Contact</span></li>
+       
+      </ul> 
+   
+      </div>
+     <!-- <center>
+      <span class="span-1">
+
+      </span>
+      </center> -->
+      </div>
+      <!--////////////////////////First container end///////////////////////////////-->
+
+    <!--///////////////////////////container second//////////////////////////////-->
+    <div class="container-fluid-2" id="fluid-2">
+       <img src="{% static 'img/header-background-01.png' %}" alt="Nature" style="width:100%;" height="450px">
+       <div id ="content-1">
+        <div class="text-block">
+        <h1 id="h1-2">Our Schools are the Right Fit for Your Child.. <br>We are Near Your Place!</h1>
+     
+          <!--  
+          <input id="myInput" value="Some text..">
+          <button class="btn btn-warning" id="myBtn" onclick="javascript:alert('Hello World!')">Button</button> 
+          <button class="btn btn-warning" id="myBtn">Search</button> -->
+       <form class="form-inline">
+       <div class="input-group">
+       <input type="email" placeholder="Enter Your Email" class="form-control" style="width:300px; height: 50px;">
+       <div class="input-group-append">
+       <button type="submit" class="btn btn-warning">SUBSCRIBE</button>
+       </div>
+       </div>
+       </form>
+      </div>
+      </div>
+    </div>
+    <!--<center>
+      <span class="span-2">
+
+      </span>
+      </center> -->
+     <!--///////////////////////////End container second//////////////////////////////-->
+
+  <!--///////////////////////////////Third Container///////////////////////////////////-->
+ <div class="container-fluid" id="container-3">
+   <div class="row">
+   <div class="col" id="col-sm-4">
+     <div class="row">
+       <div class="-1" id="col-1">
+    <img src="{% static 'img/location icon.png' %}" alt="Nature" style="width:50px;" height="50px" class="img-3-con">
+    </div>
+    <div class="col" id="col-2">
+     <h2 class="h2-1">Our Location</h2>
+     <h6 class="h6-1">{{info.address}}</h6>
+    </div>
+     </div>
+     <div class="row">
+      <div class="-1" id="col-1">
+   <img src="{% static 'img/phone-icon.jpg' %}" alt="Nature" style="width:50px;" height="50px" class="img-3-con" >
+   </div>
+   <div class="col" id="col-2">
+    <h2 class="h2-1">Phone Number</h2>
+    <h6 class="h6-2">{{info.phone}}<br>
+      {{info.phone2}}</h6>
+   </div>
+    </div>
+    <div class="row">
+      <div class="-1" id="col-1">
+   <img src="{% static 'img/email-icon.png' %}" alt="Nature" style="width:50px;" height="50px" class="img-3-con">
+   </div>
+   <div class="col" id="col-2">
+    <h2 class="h2-1">Email Address</h2>
+    <h6 class="h6-1"><a href="#">{{info.email}}</a></h6>
+   </div>
+    </div>
+   </div>
+
+   <!--//////////////////////form starting///////////////////////////////////////-->
+
+   <div class="col" id="col-lg-8">
+   <!--<img src="./form-trial.jpg" alt="Nature" style="width:632.5px; height:550px" >
+    <div class="text-block" id="text-block"> -->
+    <form class="form" method="POST">{% csrf_token %}
+      <div class="form-row">
+        <div class="col">
+          <input type="text" class="form-control" name='name' placeholder="Name" id="form-control">
+        </div>
+        <div class="col">
+          <input type="email" class="form-control" name="email" placeholder="Mail Address" id="form-control">
+        </div>
+      </div>
+
+      <div class="form-row">
+       
+          <div class="col">
+            <input type="text" class="form-control" name="address" placeholder="Your Location" id="form-control">
+          </div>
+          <div class="col">
+            <select name="lookingfor" class="DropDown" name = "lookingfor" aria-invalid="false">
+              <option value="Your Location">Looking for</option>
+              <option value="Area">Staff</option>
+              <option value="Contact Location I">Student</option>
+              <option value="Contact Location II">Job</option>
+            </select>
+          </div>
+          <div class="form-row">
+          <textarea placeholder="Your Message" name="massage" class="form-control" id="tex-box" ></textarea>
+          </div>
+          <div class="form-row">
+          <button class="button">Send Message</button>
+          </div>
+        </div>
+        
+    </form>
+    
+     <!--//////////////////////End form starting///////////////////////////////////////-->
+   </div>
+   </div>
+
+ </div>
+  </div>
+   <!--///////////////////////////////End Third Container///////////////////////////////////-->
+
+      <!--//////////////////////////////Map Conatainer///////////////////////////////////-->
+      <div class="conainer" id="Map-container">
+<div id="googleMap" style="width:80%;height:400px; margin-left: 150px;"></div>
+      </div>
+
+     
+
+<!-- ////////////////// java script /////////////////////////////////////////////-->
+<script>
+  function myMap() {
+    var mapProp= {
+      center:new google.maps.LatLng(17.44321091236065, 78.44023022972189),
+      zoom:5,
+    };
+    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+  }
+  
+</script>
+  <script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+
+
+
+
+</body>
+</html>

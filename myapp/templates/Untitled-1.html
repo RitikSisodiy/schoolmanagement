@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+     table {
+        border-collapse: separate;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+        width: 100%; }
+        table td {
+          font-family: sans-serif;
+          font-size: 14px;
+          vertical-align: top; 
+      }
+      table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 1px;
+    }
+</style>
+<body>
+      <div class="container-fluid" style="background-color:white">
+          <div class="row text-center d-block">
+              <center>
+              <h2 class="text-primary bold pb-25"><a href="{% url 'home' %}">Student Result Management System</a></h2>
+              </center>
+          </div>
+          <h4 style="text-align:right"><a href="{% url 'dashboard:pdf' id=object.id %}" target="_blank">Save as PDF</a></h4>
+          <div class="container" id="marksheet">
+              <p>
+                  <b>Student Name     : </b> Ritik sisodiya
+              </p>
+              <p>
+                  <b>Student Class    : </b>  6th   
+              </p>
+              <p>
+                  <b>Student Roll : </b> 12313
+              </p>
+              <h2 class="text-center text-primary">Mark Sheet</h2>
+              
+              <table class="table table-hover" style="border: solid;">
+                  <thead>
+                      <tr>
+                          <th>#</th>
+                          <th>Subject Name</th>
+                          <th>Mark</th>
+                          <th>Mark</th>
+                      </tr>
+                  </thead>
+                  <tbody id="table-row">
+                      
+                    <tr>
+                        <td>2</td>
+                         <td>hindi</td>
+                         <td>45</td>
+                         <td>45</td>
+                            
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                         <td>hindi</td>
+                         <td>45</td>
+                         <td>45</td>
+                            
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                         <td>hindi</td>
+                         <td>45</td>
+                         <td>45</td>
+                            
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                         <td>hindi</td>
+                         <td>45</td>
+                         <td>45</td>
+                            
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                         <td>hindi</td>
+                         <td>45</td>
+                         <td>45</td>
+                            
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                         <td>hindi</td>
+                         <td>45</td>
+                         <td>45</td>
+                            
+                    </tr>
+                   
+                
+                          
+                  </tbody>
+              </table>
+          </div>
+          
+          <div class="shadow-lg p-3">
+              <span class="link"><a href="{% url 'home' %}">Back To Home</a></span>
+          </div>
+      </div>   
+</body>
+</html>
