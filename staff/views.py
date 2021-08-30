@@ -14,32 +14,29 @@ from . models import studentAttendance
 # Create your views here.
 def staff(request):
     res = {}
-    if request.user.is_authenticated and request.user.staffregister_set.all().exists():
-        data = serializers.serialize( "python",staffregister.objects.filter(user=request.user.id))
-        res['data'] = data
-        res['noofstudent'] = studentregister.objects.all().count()
-        res['noofstaff'] = staffregister.objects.all().count()
-        res['noofclass'] = standard.objects.all().count()
-        res['noofsubject'] = subject.objects.all().count()
-        subnamelist = []
-        subcountlist = []
-        studentcountlist = []
-        for sub in standard.objects.all():
-            count = Class.objects.filter(standard=sub.id).count()
-            stucount = studentregister.objects.filter(standard=sub.id).count()
-            name = sub.standard
-            subnamelist.append(name)
-            subcountlist.append(count)
-            studentcountlist.append(stucount)
-        res['subnamelist'] = subnamelist
-        res['subcountlist'] = subcountlist
-        res['studentcountlist'] = studentcountlist
-        if request.user.staffregister_set.all()[0].status == False:
-            res['verify'] = 'notverifyed'
-        print("statis:",request.user.staffregister_set.all()[0].status)
-        return render(request,'staff/dashboard.html',res)
-    else:
-        return redirect('register')
+    data = serializers.serialize( "python",staffregister.objects.filter(user=request.user.id))
+    res['data'] = data
+    res['noofstudent'] = studentregister.objects.all().count()
+    res['noofstaff'] = staffregister.objects.all().count()
+    res['noofclass'] = standard.objects.all().count()
+    res['noofsubject'] = subject.objects.all().count()
+    subnamelist = []
+    subcountlist = []
+    studentcountlist = []
+    for sub in standard.objects.all():
+        count = Class.objects.filter(standard=sub.id).count()
+        stucount = studentregister.objects.filter(standard=sub.id).count()
+        name = sub.standard
+        subnamelist.append(name)
+        subcountlist.append(count)
+        studentcountlist.append(stucount)
+    res['subnamelist'] = subnamelist
+    res['subcountlist'] = subcountlist
+    res['studentcountlist'] = studentcountlist
+    if request.user.staffregister_set.all()[0].status == False:
+        res['verify'] = 'notverifyed'
+    print("statis:",request.user.staffregister_set.all()[0].status)
+    return render(request,'staff/dashboard.html',res)
 def studentinfo(request,std=None):
     if request.GET.get('id') is not None:
         # stu = serializers.serialize('python',studentregister.objects.filter(id=request.GET['id']))
@@ -117,67 +114,68 @@ def schedule(request):
     }
     return render(request,'staff/schedule.html',res)
 def allschedule(request):
-    user = staffregister.objects.get(user=request.user.id)
-    schedule = classtimings.objects.filter(user=user.id)
-    classes = standard.objects.all()
-    if request.method == 'POST':
-        form = classtimingsForm(request.POST)
-        if form.is_valid():
-            obj = form.save(commit=False)
-            checksub = classtimings.objects.filter(Class=obj.Class,subject=obj.subject)
-            if checksub.exists():
-                messages.error(request,"this subject class is taken by staff member "+str(checksub[0].user.user.first_name)+" "+str(checksub[0].user.user.last_name +" at "+ str(checksub[0].timefrom)))
+    if request.user.is_superuser:
+        user = staffregister.objects.get(user=request.user.id)
+        schedule = classtimings.objects.filter(user=user.id)
+        classes = standard.objects.all()
+        if request.method == 'POST':
+            form = classtimingsForm(request.POST)
+            if form.is_valid():
+                obj = form.save(commit=False)
+                checksub = classtimings.objects.filter(Class=obj.Class,subject=obj.subject)
+                if checksub.exists():
+                    messages.error(request,"this subject class is taken by staff member "+str(checksub[0].user.user.first_name)+" "+str(checksub[0].user.user.last_name +" at "+ str(checksub[0].timefrom)))
+                    return redirect(request.get_full_path())
+                checktiming = classtimings.objects.filter(Class=obj.Class,timefrom=obj.timefrom)
+                if checktiming.exists():
+                    messages.error(request,"this timing is busy with staff member "+str(checktiming[0].user.user.first_name)+" "+str(checktiming[0].user.user.last_name))
+                    return redirect(request.get_full_path())
+                checktiming = classtimings.objects.filter(user=obj.user,timefrom=obj.timefrom)
+                if checktiming.exists():
+                    messages.error(request,str(checktiming[0].user.user.first_name)+" "+str(checktiming[0].user.user.last_name)+ " has ( " + str(checktiming[0].subject.subject) +" ) preiod in "+ str(checktiming[0].Class.standard) +" class in this time slot ! Please choose the different timing   ")
+                    return redirect(request.get_full_path())
+                obj.save()
+                messages.success(request,"New schedule is added successfully.....")
                 return redirect(request.get_full_path())
-            checktiming = classtimings.objects.filter(Class=obj.Class,timefrom=obj.timefrom)
-            if checktiming.exists():
-                messages.error(request,"this timing is busy with staff member "+str(checktiming[0].user.user.first_name)+" "+str(checktiming[0].user.user.last_name))
-                return redirect(request.get_full_path())
-            checktiming = classtimings.objects.filter(user=obj.user,timefrom=obj.timefrom)
-            if checktiming.exists():
-                messages.error(request,str(checktiming[0].user.user.first_name)+" "+str(checktiming[0].user.user.last_name)+ " has ( " + str(checktiming[0].subject.subject) +" ) preiod in "+ str(checktiming[0].Class.standard) +" class in this time slot ! Please choose the different timing   ")
-                return redirect(request.get_full_path())
-            obj.save()
-            messages.success(request,"New schedule is added successfully.....")
-            return redirect(request.get_full_path())
-    else:
-        form = classtimingsForm()
-    delschedule = request.GET.get('schedule')
-    classid = request.GET.get('id')
-    if delschedule is not None:
-        try:
-            classtimings.objects.get(id=delschedule).delete()
-            messages.success(request,"schedule is deleted successfully....")
-            return redirect(str(request.path)+"?id="+classid)
-        except:
-            pass
-    if classid is not None:
-        sublist = Class.objects.filter(standard = classid)
-        schedulelist = []
-        for sub in sublist:
-            sch = classtimings.objects.filter(Class=classid,subject=sub.subject.id)
-            schedulelist.append([sub,sch])
-        form = classtimingsForm(initial={'Class': classid,})           
-        return render(request,'staff/allschedule.html',{'schedulelist':schedulelist,'forms':form})
-    
-    res = {
-        'forms':form,
-        'schedule':schedule,
+        else:
+            form = classtimingsForm()
+        delschedule = request.GET.get('schedule')
+        classid = request.GET.get('id')
+        if delschedule is not None:
+            try:
+                classtimings.objects.get(id=delschedule).delete()
+                messages.success(request,"schedule is deleted successfully....")
+                return redirect(str(request.path)+"?id="+classid)
+            except:
+                pass
+        if classid is not None:
+            sublist = Class.objects.filter(standard = classid)
+            schedulelist = []
+            for sub in sublist:
+                sch = classtimings.objects.filter(Class=classid,subject=sub.subject.id)
+                schedulelist.append([sub,sch])
+            form = classtimingsForm(initial={'Class': classid,})           
+            return render(request,'staff/allschedule.html',{'schedulelist':schedulelist,'forms':form})
         
-    }
-    subnamelist = []
-    subcountlist = []
-    studentcountlist = []
-    emptyperiod = []
-    for sub in classes:
-        count = Class.objects.filter(standard=sub.id).count()
-        stucount = studentregister.objects.filter(standard=sub.id).count()
-        emptyper = Class.objects.filter(standard=sub.id).count() - classtimings.objects.filter(Class=sub.id).count()
-        subcountlist.append(count)
-        studentcountlist.append(stucount)
-        emptyperiod.append(emptyper)
-
-    res['classSubStulist'] = zip(classes,subcountlist,studentcountlist,emptyperiod)
-    return render(request,'staff/allschedule.html',res)
+        res = {
+            'forms':form,
+            'schedule':schedule,
+            
+        }
+        subnamelist = []
+        subcountlist = []
+        studentcountlist = []
+        emptyperiod = []
+        for sub in classes:
+            count = Class.objects.filter(standard=sub.id).count()
+            stucount = studentregister.objects.filter(standard=sub.id).count()
+            emptyper = Class.objects.filter(standard=sub.id).count() - classtimings.objects.filter(Class=sub.id).count()
+            subcountlist.append(count)
+            studentcountlist.append(stucount)
+            emptyperiod.append(emptyper)
+        res['classSubStulist'] = zip(classes,subcountlist,studentcountlist,emptyperiod)
+        return render(request,'staff/allschedule.html',res)
+    return redirect('staff')
 def mystudent(request,std=None):
     staffuser = staffregister.objects.get(user=request.user.id)   
     if std is not None:
@@ -299,29 +297,31 @@ def subjects(request):
     return render(request,'staff/subjects.html',{'subjects':subob,'subform':subform})
 
 def users(request):
-    form = userRegister()
-    form1 = StaffRegister()
-    if request.method =="POST":
-        form = userRegister(request.POST)
-        form1 = StaffRegister(request.POST)
-        if form1.is_valid and form.is_valid:
-            username = res = ''.join(random.choices(string.ascii_uppercase +string.digits, k = 10))
-            password = form.cleaned_data['password']
-            obj = form.save(commit=False)
-            obj.username = username
-            obj.save()
-            user = User.objects.get(username=username)
-            user.password = make_password(password)
-            user.save()
-            obj = form1.save(commit=False)
-            obj.user = user
-            obj.save()
-            return redirect('managestaff')
-        else:
-            users = staffregister.objects.all()
-            return render(request,'staff/users.html',{'users':users,'forms':[form,form1]})
-    users = staffregister.objects.all()
-    return render(request,'staff/users.html',{'users':users,'forms':[form,form1]})
+    if request.user.is_superuser:
+        form = userRegister()
+        form1 = StaffRegister()
+        if request.method =="POST":
+            form = userRegister(request.POST)
+            form1 = StaffRegister(request.POST)
+            if form1.is_valid and form.is_valid:
+                username = res = ''.join(random.choices(string.ascii_uppercase +string.digits, k = 10))
+                password = form.cleaned_data['password']
+                obj = form.save(commit=False)
+                obj.username = username
+                obj.save()
+                user = User.objects.get(username=username)
+                user.password = make_password(password)
+                user.save()
+                obj = form1.save(commit=False)
+                obj.user = user
+                obj.save()
+                return redirect('managestaff')
+            else:
+                users = staffregister.objects.all()
+                return render(request,'staff/users.html',{'users':users,'forms':[form,form1]})
+        users = staffregister.objects.all()
+        return render(request,'staff/users.html',{'users':users,'forms':[form,form1]})
+    return redirect('staff')
 def manageattendance(request):
     classid = request.GET.get('id')
     date = request.GET.get('date')
@@ -398,12 +398,14 @@ def myprofile(request):
         return redirect('staffprofile')
     return render(request,'staff/profile.html',{'student':user,'form':form,'form1':form1})
 def schoolinfo(request):
-    schoolinfo = schoolifo.objects.all()[0]
-    if request.method=="POST":
-        form = schoolinfoForm(request.POST,request.FILES,instance=schoolinfo)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "school information is updated successfully   ")
-            return redirect('schoolinfo')
-    form = schoolinfoForm(instance=schoolinfo)
-    return render(request,'staff/schoolinfo.html',{"form":form})
+    if request.user.is_superuser:
+        schoolinfo = schoolifo.objects.all()[0]
+        if request.method=="POST":
+            form = schoolinfoForm(request.POST,request.FILES,instance=schoolinfo)
+            if form.is_valid():
+                form.save()
+                messages.success(request, "school information is updated successfully   ")
+                return redirect('schoolinfo')
+        form = schoolinfoForm(instance=schoolinfo)
+        return render(request,'staff/schoolinfo.html',{"form":form})
+    return redirect('staff')

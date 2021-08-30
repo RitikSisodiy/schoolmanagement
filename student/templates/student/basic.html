@@ -155,7 +155,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="/static/dist/js/demo.js"></script>
 
-<script>
   var ele = document.getElementsByTagName('input')
   for(var i =0; i<ele.length; i++){
       if(ele[i].className=='' && ele[i].getAttribute('type') != 'checkbox'){
@@ -168,11 +167,12 @@
         ele[i].setAttribute('type','date')
         ele[i].setAttribute('class','form-control')
       }
-  }
+  } 
   var sel = document.getElementsByTagName('select')
   for(var i =0; i<sel.length; i++){
       sel[i].setAttribute('class','form-control col')
   }
+  
 </script>
     <script>
         $('.toggler').click(() => {
@@ -190,7 +190,6 @@
             console.log("working")
             var nav = $("#mainsidebar").attr('class')
             if(nav=='main'){nav='main nav-active'}else{nav="main"}
-            $("#mainsidebar").attr('class')
             console.log(nav)
             var xhttp = new XMLHttpRequest()
             xhttp.open('GET','{% url 'updatenav' %}?nav='+nav,true)
@@ -210,8 +209,7 @@
                 || navigator.userAgent.match(/iPod/i)
                 || navigator.userAgent.match(/BlackBerry/i)
                 || navigator.userAgent.match(/Windows Phone/i)){
-                    $("#mainsidebar").attr('class','main')}else{
-            if (localStorage.getItem('nav')!= null){$("#mainsidebar").attr('class',localStorage.getItem('nav'))}}
+                    $("#mainsidebar").attr('class','main')}
         });
     </script>
     {% block custom_js %}

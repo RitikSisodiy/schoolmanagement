@@ -20,10 +20,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('schoolmain.urls')),
     path('', views.index, name = 'index'),
     path('studentregister/', views.register, name = 'studentregister'),
     path('staffregister/', views.register, name = 'staffregister'),
-    path('signin/', views.signin, name = 'signin'),
+    path('dashboard/', views.signin, name = 'signin'),
     path('signout/', views.signout, name = 'signout'),
     path('verifymail/', views.verifymail, name = 'verify'),
     path('staff/' , include('staff.urls')),

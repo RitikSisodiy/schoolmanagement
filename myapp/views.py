@@ -1,3 +1,4 @@
+from django.http.response import JsonResponse
 from django.shortcuts import render,redirect
 from .forms import StaffRegister,userRegister,loginform
 from .forms import StaffRegister,userRegister,loginform,StudentRegister
@@ -19,18 +20,21 @@ from io import BytesIO
 from xhtml2pdf import pisa
   
 def index(request):
-    stuid = request.GET.get('stuid')
-    examsob = []
-    if stuid is not None:
-        examlist = result.objects.values('exam')
-        exams={item['exam'] for item in examlist}
-        for exam in exams:
-            resultlist = result.objects.filter(student=stuid,exam=exam)
-            if resultlist.exists():
-                examob = examtype.objects.get(id=exam)
-                examsob.append(examob)
-        return render(request,'index.html',{'exams':examsob,'stuid':stuid})
-    return render(request,'index.html',{})
+    # stuid = request.GET.get('stuid')
+    # examsob = []
+    # if stuid is not None:
+    #     examlist = result.objects.values('exam')
+    #     exams={item['exam'] for item in examlist}
+    #     for exam in exams:
+    #         resultlist = result.objects.filter(student=stuid,exam=exam)
+    #         if resultlist.exists():
+    #             examob = examtype.objects.get(id=exam)
+    #             examsob.append(examob)
+    #     return render(request,'index.html',{'exams':examsob,'stuid':stuid})
+    # return render(request,'index.html',{})
+    if request.user.is_authenticated:
+        return redirect('staffregister')
+    return render(request,'logindashboard.html')
 def students(request):
     stulist = studentregister.objects.all()
     return render(request,'index.html',{'stulist':stulist})
@@ -109,16 +113,17 @@ def signin(request):
             print(user)
             if user is not None:
                 login(request,user)
-                messages.success(request,'Logged in successfully')
-                return redirect(request.path)
+                return JsonResponse({'status':'ok','msg':'Login Success'})
+                # messages.success(request,'Logged in successfully')
+                # return redirect(request.path)
             else:
-                messages.error(request,"please check your password")
-                return render(request,'signin.html',{'form':form})
+                return JsonResponse({"status":'invaliduser','msg':'invalid user'})
+                # return render(request,'signin.html',{'form':form})
         else:
-            return render(request,'signin.html',{'form':form})
+            return render(request,'logindashboard.html',{'form':form})
 
     form = loginform()
-    return render(request,'signin.html',{'form':form})
+    return render(request,'logindashboard.html',{'form':form})
 def signout(request):
     logout(request)
     messages.success(request,"Log out successfully")
@@ -171,7 +176,7 @@ def verifyotp(request):
                             obj.save()
                             return redirect('register')
                     else:
-                        return HttpResponse("not exicst")
+                        return HttpResponse("not exist")
                 else:
                     return render(request,'verifyotp.html',{"form":form})
         if request.user.is_authenticated and to is not None:

@@ -10,18 +10,16 @@ from myapp.forms import StudentRegister,userRegister
 # Create your views here.
 def student(request):
     res = {}
-    if request.user.is_authenticated and request.user.studentregister_set.all().exists():
-        if request.user.studentregister_set.all()[0].status == False:
-            res['verify'] = 'notverifyed'
-        # data = serializers.serialize( "python",studentregister.objects.filter(user=request.user.id))
-        # res['data'] = data
-        res['totalattendance'] = studentAttendance.objects.filter(student=request.user.studentregister_set.all()[0].id).count()
-        res['present'] = studentAttendance.objects.filter(student=request.user.studentregister_set.all()[0].id,attend=True).count()
-        res['absent'] = res['totalattendance'] - res['present']
-        res['totalsub'] = Class.objects.filter( standard=request.user.studentregister_set.all()[0].standard).count()
-        return render(request,'student/student.html',res)
-    else:
-        return redirect('studentregister')
+    if request.user.studentregister_set.all()[0].status == False:
+        res['verify'] = 'notverifyed'
+    # data = serializers.serialize( "python",studentregister.objects.filter(user=request.user.id))
+    # res['data'] = data
+    res['totalattendance'] = studentAttendance.objects.filter(student=request.user.studentregister_set.all()[0].id).count()
+    res['present'] = studentAttendance.objects.filter(student=request.user.studentregister_set.all()[0].id,attend=True).count()
+    res['absent'] = res['totalattendance'] - res['present']
+    res['totalsub'] = Class.objects.filter( standard=request.user.studentregister_set.all()[0].standard).count()
+    return render(request,'student/student.html',res)
+
 def test(request):
     li = [User,studentregister,staffregister]
     for m in li:

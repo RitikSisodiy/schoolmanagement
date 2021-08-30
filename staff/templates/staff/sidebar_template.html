@@ -148,6 +148,7 @@
                   Home
                 </a>
             </li>
+            {% if request.user.is_superuser %}
             <li class="nav-item">
               {% url 'managestaff' as manage_staff %}
               {% url 'edit_student' student_id=id as edit_student %}
@@ -156,8 +157,8 @@
                   Manage Staff
               </a>
             </li>
-
-
+            {% endif %}
+            {% if request.user.is_superuser %}
             <li class="nav-item">
               {% url 'allschedule' as manage_staff %}
               {% url 'edit_staff' staff_id=id as edit_staff %}
@@ -166,7 +167,7 @@
                   schedule
               </a>
             </li>
-            
+            {% endif %}
 
             <li class="nav-item">
               {% url 'mystudent' as manage_student %}
@@ -209,6 +210,7 @@
                  Student Leave
               </a>
             </li>
+            {% if request.user.is_superuser %}
             <li class="nav-item">
               {% url 'schoolinfo' as schoolinfo %}
               {% url 'edit_course' course_id=id as edit_course %}
@@ -217,7 +219,7 @@
                  schoolinfo
               </a>
             </li>
-
+          {% endif %}
 
 
           </ul>    

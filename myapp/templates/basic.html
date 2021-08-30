@@ -54,7 +54,7 @@
         <div class="main-display">
             <div class="main-child">
                 <div class="controls">
-                    <div class="toggler"  onclick = " Updatenav()">
+                    <div class="toggler"  onclick = "Updatenav()">
                         <i class="toggler-ico"></i>
                     </div>
                     <div class="second"><div class="left"><h3>{{schoolinfo.name}}</h3></div></div>    
@@ -109,12 +109,13 @@
       sel[i].setAttribute('class','form-control col')
   }
 </script>
-    <script>
+  <script>
         $('.toggler').click(() => {
             $('.main').toggleClass('nav-active')
         })
         $('.second .right').click(() => {
-            $('.second .right ').toggleClass('active')
+          $(".admin-settings > ul").toggle()
+          $('.second .right ').toggleClass('active')  
         })
         var elem = document.documentElement;
         function cheackFullscreen(){
@@ -124,7 +125,6 @@
             console.log("working")
             var nav = $("#mainsidebar").attr('class')
             if(nav=='main'){nav='main nav-active'}else{nav="main"}
-            $("#mainsidebar").attr('class')
             console.log(nav)
             var xhttp = new XMLHttpRequest()
             xhttp.open('GET','{% url 'updatenav' %}?nav='+nav,true)
@@ -135,7 +135,8 @@
             }
             }
         }
-        {% comment %} $( document ).ready(function() {
+        
+        $( document ).ready(function() {
             if( navigator.userAgent.match(/Android/i)
                 || navigator.userAgent.match(/webOS/i)
                 || navigator.userAgent.match(/iPhone/i)
@@ -143,9 +144,8 @@
                 || navigator.userAgent.match(/iPod/i)
                 || navigator.userAgent.match(/BlackBerry/i)
                 || navigator.userAgent.match(/Windows Phone/i)){
-                    $("#mainsidebar").attr('class','main')}else{
-            if (localStorage.getItem('nav')!= null){$("#mainsidebar").attr('class',localStorage.getItem('nav'))}}
-        }); {% endcomment %}
+                    $("#mainsidebar").attr('class','main')}
+        });
     </script>
     {% block custom_js %}
     {% endblock custom_js %}
