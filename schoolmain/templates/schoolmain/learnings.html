@@ -1,0 +1,112 @@
+{% extends 'schoolmain/basic.html' %}
+{% load static %}
+{% block body %}
+  <div class="learning-page">
+        <div class="first">
+            <h1>Learning</h1>
+            <a href="index.html">Home</a><i class="fa fa-caret-right"></i>
+            <a href="#">Academic</a><i class="fa fa-caret-right"></i>
+            <a href="#">Learning</a>
+        </div>
+        <div class="main container">
+            <div class="second">
+                <div class="heading">
+                    <h2 class="text-center" id="text-info">
+                        Our Activities
+                        <br><span class="span"></span>
+                    </h2>
+                </div>
+                <div class="options">
+                    <ul>
+                        <li style="background: #ff0080;"><a href="#">Academy</a></li>
+                        <li style="background: #669900;"><a href="#">Curricular</a></li>
+                        <li style="background: #6600ff;"><a href="#">Co-Curricular</a></li>
+                        <li style="background: #1da1f2;"><a href="#">Atheletics</a></li>
+                    </ul>
+                </div>
+                <div class="second-1">
+                    <div class="row my-5" style="--color: #8700ff;">
+                        <div class="col-lg-6 order-1 img">
+                            <img src="{% static 'img/activity-shape-img1.png' %}" alt="" class="img-fluid">
+                            <img src="{% static 'img/activity-1-shape1.png' %}" alt="" class="shape shape-1">
+                            <img src="{% static 'img/activity-1-shape2.png' %}" alt="" class="shape shape-2">
+                        </div>
+                        <div class="col-lg-6 order-2">
+                            <h3 class="heading">High School</h3>
+                            <h4>Classes 9 to 12</h4>
+                            <p>Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla
+                                ut metus varius laoreet. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,
+                                tellus.</p>
+                            <ul>
+                                <li>Maths, Physics, Chemistry with Biology</li>
+                                <li>Accountancy, Economics, Business Studies with Maths</li>
+                                <li>Computer Science / Biotechnology</li>
+                            </ul>
+                            <a href="" class="join-today">Join Today</a>
+                        </div>
+                    </div>
+                    <div class="row my-5" style="--color: #1da1f2;">
+                        <div class="col-lg-6 order-2 img">
+                            <img src="{% static 'img/activity-shape-img1.png' %}" alt="" class="img-fluid">
+                            <img src="{% static 'img/activity-1-shape1.png' %}" alt="" class="shape shape-1">
+                            <img src="{% static 'img/activity-1-shape2.png' %}" alt="" class="shape shape-2">
+                        </div>
+                        <div class="col-lg-6 order-1">
+                            <h3 class="heading">Middle School</h3>
+                            <h4>Classes 6 to 8</h4>
+                            <p>Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla
+                                ut metus varius laoreet. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,
+                                tellus.</p>
+                            <ul>
+                                <li>Maths, Physics, Chemistry with Biology</li>
+                                <li>Accountancy, Economics, Business Studies with Maths</li>
+                                <li>Computer Science / Biotechnology</li>
+                            </ul>
+                            <a href="" class="join-today">Join Today</a>
+                        </div>
+                    </div>
+                    <div class="row my-5" style="--color: #6600ff;">
+                        <div class="col-lg-6 order-1 img">
+                            <img src="{% static 'img/activity-shape-img1.png' %}" alt="" class="img-fluid">
+                            <img src="{% static 'img/activity-1-shape1.png' %}" alt="" class="shape shape-1">
+                            <img src="{% static 'img/activity-1-shape2.png' %}" alt="" class="shape shape-2">
+                        </div>
+                        <div class="col-lg-6 order-2">
+                            <h3 class="heading">Prinary School</h3>
+                            <h4>Classes 1 to 5</h4>
+                            <p>Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla
+                                ut metus varius laoreet. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,
+                                tellus.</p>
+                            <ul>
+                                <li>Maths, Physics, Chemistry with Biology</li>
+                                <li>Accountancy, Economics, Business Studies with Maths</li>
+                                <li>Computer Science / Biotechnology</li>
+                            </ul>
+                            <a href="" class="join-today">Join Today</a>
+                        </div>
+                    </div>
+                    <div class="row my-5" style="--color: #ff0080;">
+                        <div class="col-lg-6 order-2 img">
+                            <img src="{% static 'img/activity-shape-img1.png' %}" alt="" class="img-fluid">
+                            <img src="{% static 'img/activity-1-shape1.png' %}" alt="" class="shape shape-1">
+                            <img src="{% static 'img/activity-1-shape2.png' %}" alt="" class="shape shape-2">
+                        </div>
+                        <div class="col-lg-6 order-1">
+                            <h3 class="heading">Kinder Garden</h3>
+                            <h4>Classes LKG to UKG</h4>
+                            <p>Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla
+                                ut metus varius laoreet. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,
+                                tellus.</p>
+                            <ul>
+                                <li>Maths, Physics, Chemistry with Biology</li>
+                                <li>Accountancy, Economics, Business Studies with Maths</li>
+                                <li>Computer Science / Biotechnology</li>
+                            </ul>
+                            <a href="" class="join-today">Join Today</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

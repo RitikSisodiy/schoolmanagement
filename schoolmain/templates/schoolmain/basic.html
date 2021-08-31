@@ -69,6 +69,10 @@
                     <li class = "{% if request.path == schoolcontact %}active{% endif %}"  style="--color: #6600ff;">
                         <a href="{{schoolcontact}}"> Contact us </a>
                     </li>
+                    {% url "learnings" as learnings %}
+                    <li class = "{% if request.path == learnings %}active{% endif %}"  style="--color: #669900;">
+                        <a href="{{learnings}}"> learning </a>
+                    </li>
                 </ul>
             </nav>
             <div class="toggle-bar">

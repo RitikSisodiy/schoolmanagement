@@ -38,3 +38,5 @@ def admission(request):
     return render(request,'schoolmain/admission.html',{})
 def highschool(request):
     return render(request,'schoolmain/highschool.html',{})
+def learnings(request):
+    return render(request,'schoolmain/learnings.html',{})
