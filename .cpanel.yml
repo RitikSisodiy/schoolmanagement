@@ -1,5 +1,6 @@
 ---
 deployment:
   tasks:
-    - source /home/wt29jctjbes9/virtualenv/school/3.7/bin/activate && cd /home/wt29jctjbes9/school
-    - python manage.py collectstatic --no-input
+    - export DEPLOYPATH=/home/user/public_html/
+    - /bin/cp index.html $DEPLOYPATH
+    - /bin/cp style.css $DEPLOYPATH
