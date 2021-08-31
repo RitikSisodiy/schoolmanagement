@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - source /home/wt29jctjbes9/virtualenv/school/3.7/bin/activate && cd /home/wt29jctjbes9/school
+    - python manage.py collectstatic --no-input
