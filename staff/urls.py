@@ -12,6 +12,7 @@ urlpatterns= [
     path('result/<slug:std>/view/',views.viewresult,name='result'),
     path('schedule/',views.allschedule,name='allschedule'),
     path('mystudent/',views.mystudent,name='mystudent'),
+    path('mystudent/all',views.mystudentall,name='mystudentall'),
     path('mystudent/<slug:std>/',views.mystudent,name='mystudent'),
     path('classes/subjects/',views.subjects,name='subjects'),
     path('classes/',views.classes,name='classes'),

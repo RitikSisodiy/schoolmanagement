@@ -1,4 +1,6 @@
+from django.http.response import HttpResponse
 from django.shortcuts import render,redirect
+from render_block.base import render_block_to_string
 from myapp.verify import create_token,verify_token
 from django.core import serializers
 from . models import studentregister,leavestudent
@@ -56,7 +58,9 @@ def myprofile(request):
             form.save()
         messages.success(request, "Profile is updated succesfully")
         return redirect('studentprofile')
-    return render(request,'student/profile.html',{'student':user,'form':form,'form1':form1})
+    resp = render_block_to_string('student/profile.html','profile',{'student':user,'form':form,'form1':form1},request)
+    return HttpResponse(resp)        
+    # return render(request,'student/profile.html',{'student':user,'form':form,'form1':form1})
 def studentleave(request):
     user = studentregister.objects.get(user=request.user)
     if request.method=="POST":

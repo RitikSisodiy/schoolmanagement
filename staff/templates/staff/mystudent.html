@@ -89,7 +89,7 @@
                     {% for row in mystudent %}
         <tr class="">
             <td>{{forloop.counter}}</td>
-            <td>{{row.user.first_name}} {{row.user.last_name}}</td>
+            <td>{{row.user.first_name|title}} {{row.user.last_name|title}}</td>
             <td>{{row.id|add:1000}}</td>
             <td><a href="/staff/result/{{row.standard}}/?student={{row.user.first_name}} {{row.user.last_name}}&stuid={{row.id}}" class="btn btn-outline-primary ">view-result</a></td>
             <th><a href="/staff/info/{{row.standard}}/?student={{row.user.first_name}} {{row.user.last_name}}&id={{row.id}}" class="btn btn-outline-info ">view-Info</a></th>

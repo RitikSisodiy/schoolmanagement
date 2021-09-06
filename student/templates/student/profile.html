@@ -1,5 +1,6 @@
 {% extends 'student/basic.html' %}
 {% block table %}
+{% block profile %}
 <section class="content">
     <div class="container-fluid">
 
@@ -40,19 +41,21 @@
                             </div>
                             {% endif %}
                         
+                            <form role="form" id="profileform" method="POST" action="{% url 'studentprofile' %}">
 
                     <div class="card-body">
                             {{form1.as_p}}
-                            <form role="form" method="POST" action="{% url 'studentprofile' %}">
                                 {% csrf_token %}
                             {{form.as_p}}
+                            <input type="hidden" id='cpath' name="cpath" value="{{request.get_full_path}}">
                         
                     </div>
                     <!-- /.card-body -->
 
                     <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Update Profile</button>
-                    </div>
+                        <button type="submit" onclick="$('#cpath').val(window.location);
+                        $('#profileform').submit()" class="btn btn-primary">Update Profile</button>  
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>                  </div>
                 </form>
                 </div>
                 <!-- /.card -->
@@ -64,4 +67,5 @@
   </section>
 
  
+{% endblock %}
 {% endblock %}

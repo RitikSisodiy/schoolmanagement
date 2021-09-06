@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
+from render_block.base import render_block_to_string
 from .models import staffregister,Class,standard,result
 from student.models import studentregister,subject,leavestudent
 from django.core import serializers
@@ -191,6 +192,9 @@ def mystudent(request,std=None):
             'myclass':myclasses
         }
     return render(request,'staff/mystudent.html',res)
+def mystudentall(request):
+    stulist = studentregister.objects.all()
+    return render(request,'staff/mystudentall.html',{'stulist':stulist})
 def viewresult(request,std=None):
     examid = request.GET.get('exam')
     std = standard.objects.get(standard=std)
@@ -258,7 +262,7 @@ def classes(request):
         return redirect(request.path+'?id='+clas)
     if clas is not None:
         form  = ClassForm(initial={'standard': clas})
-        return render(request , 'staff/classes.html',{'subjects':subob,'form':form })
+        return render(request , 'staff/classes.html',{'subjects':subob or True,'form':form })
     form = standardForm()
     if std is not None:
         form = standardForm(request.GET)
@@ -395,8 +399,11 @@ def myprofile(request):
         if form.is_valid():
             form.save()
         messages.success(request, "Profile is updated succesfully")
-        return redirect('staffprofile')
-    return render(request,'staff/profile.html',{'student':user,'form':form,'form1':form1})
+        cpath = request.POST.get('cpath') or 'staff'
+        return redirect(cpath)
+    resp = render_block_to_string('staff/profile.html','profile',{'student':user,'form':form,'form1':form1},request)
+    return HttpResponse(resp)
+    # return render(request,'staff/profile.html',{'student':user,'form':form,'form1':form1})
 def schoolinfo(request):
     if request.user.is_superuser:
         schoolinfo = schoolifo.objects.all()[0]

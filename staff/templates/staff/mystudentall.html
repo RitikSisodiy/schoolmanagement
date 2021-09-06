@@ -1,5 +1,6 @@
 {% extends 'staff/basic.html' %}
-{% if messages %}
+{% block table %}
+  {% if messages %}
                             <div class="form-group">
                             <div class="col-12">
                                 {% for message in messages %}
@@ -22,58 +23,28 @@
                             </div>
                             </div>
                             {% endif %}
-{% block table %}
-<nav class="navbar navbar-light bg-primary">
-    <div class="container-fluid">
-        <h2 class="text-light">All Examinations Of {{request.GET.student|capfirst}}</h2>
-    </div>
-</nav>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal" data-backdrop = 'static' data-keyboard = 'false'>
-    Add-Examination
-  </button>
-  
-  <!-- Modal -->
-
-{% if exams %}
-
-<table class="display table table-striped table-bordered dataTable my-3">
-    <thead>
-        <tr>
-            <th>SN.</th>
-            <th>Exam Name</th>
-            <th>Date</th>
-            <th>result</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for row in exams %}
-        <tr>
-            <td>{{forloop.counter}}</td>
-            <td>{{row.exam_name|title}}</td>
-            <td>{{row.start_date}}</td>
-            <td><a href="/staff/result/{{row.Class}}/view/?exam={{row.id}}&stuid={{stuid}}" class="btn btn-outline-primary btn-sm">view-result</a></td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-{% else %}
-<h2>No Exams conducted in this class</h2>
-{% endif %}
-{% if result %}
-
-{% endif %}
-
-{% endblock %}
-{% block addform %}
-{% if form %}
-<form method="POST">{% csrf_token %}
-    <div class="">
-{{form}}
-
-<button type="submit" class="btn btn-outline-primary  my-5"> Add-Exam </button>
-</div>
-</form>
+{% if stulist %}  
+   <table class="display table table-striped table-bordered dataTable my-3">
+       <thead>
+           <tr>
+               <th>SN.</th>
+               <th>name</th>
+               <th>class</th>
+               <th>Roll No.</th>
+               <th>result</th>
+           </tr>
+       </thead>
+       <tbody>
+           {% for row in stulist %}
+           <tr>
+               <td>{{forloop.counter}}</td>
+               <td>{{row.user.first_name}} {{row.user.last_name}}</td>
+               <td>{{row.standard}}</td>
+               <td>{{row.id|add:1000}}</td>
+               <td><a href="/?student={{row.user.first_name}} {{row.user.last_name}}&stuid={{row.id}}" class="btn btn-outline-primary btn-sm">view-result</a></td>
+           </tr>
+           {% endfor %}
+       </tbody>
+   </table>
 {% endif %}
 {% endblock %}
-{% block formtitle %}Add-Examination{% endblock %}

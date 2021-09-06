@@ -72,6 +72,12 @@
         <td><strong>Roll No:</strong> </td>
         <td>{{mainresult.0.student.id|add:1000}}</td>
     </tr>
+    <tr>
+        <td><strong>Class:</strong> </td>
+        <td>{{mainresult.0.student.standard}}</td>
+        <td><strong>Gender:</strong> </td>
+        <td>{{mainresult.0.student.gender}}</td>
+    </tr>
 </table>
 <div style="height: 2vh;"></div>
 
@@ -119,7 +125,7 @@
         {% for row in mainresult %}
 <tr role="row" class="odd">
 <td class="">{{forloop.counter}}</td>
-<td class="">{{row.subject}}</td>
+<td class="">{{row.subject|title}}</td>
 <td class="">{{row.obtain_marks}}</td>
 <td class=""><input name="{{row.subject}}"  value="{{row.obtain_marks}}"></td>
 <td class="">{{row.max_marks}}</td>

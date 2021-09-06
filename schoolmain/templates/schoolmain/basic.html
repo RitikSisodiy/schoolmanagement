@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="icon" href="{{schoolinfo.icon.url}}">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -72,6 +73,10 @@
                     {% url "learnings" as learnings %}
                     <li class = "{% if request.path == learnings %}active{% endif %}"  style="--color: #669900;">
                         <a href="{{learnings}}">Learning</a>
+                    </li>
+                    {% url "signin" as signin %}
+                    <li class = "{% if request.path == signin %}active{% endif %}"  style="--color: #ff0080;">
+                        <a href="{{signin}}">Dashboard</a>
                     </li>
                 </ul>
             </nav>

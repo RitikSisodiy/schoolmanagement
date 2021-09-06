@@ -2,11 +2,11 @@
 {% block page_title %}{% if subjects %}Class {{subjects.0.standard}} all subjects{% else %}All classes{% endif %}{% endblock %}
 {% block table %}
 {% if messages %}
-                            <div class="form-group">
+                        <div class="form-group">
                             <div class="col-12">
                                 {% for message in messages %}
                                 {% if message.tags == "error" %}
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
                                     {{ message }}
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
@@ -23,7 +23,7 @@
                                 {% endfor %}
                             </div>
                             </div>
-                            {% endif %}
+                        {% endif %}
     {% if classes %}
     <div class="row">
         <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal"
@@ -79,17 +79,16 @@
 </div>
 {% endif %}
 {% if subjects %}
-
-
-
-<!-- Modal -->
 <div class="row">
     <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal" data-target="#exampleModal"
     data-backdrop='static' data-keyboard='false'>
     +Add-Subject
 </button>
-</div>
 
+
+
+</div>
+<!-- Modal -->
 
 <div class="row">
     <div class="col-md-12">
@@ -108,6 +107,7 @@
                 </div>
                 </div>
             </div>
+{% if subjects != True %}
             <!-- /.card-header -->
             <div class="card-body table-responsive p-0">
                 <table class="display table table-striped table-bordered dataTable my-3">
@@ -127,12 +127,17 @@
                                 class="btn btn-outline-danger btn-sm">Delete</a></td>
                                                                 </tr>
                     {% endfor %}
-                    
                 </tbody>
                 </table>
             </div>
             <!-- /.card-body -->
             </div>
+{% else %}
+<div class="p-5">
+<div class="alert alert-warning" role="alert">
+No subjects....
+</div></div>
+{% endif %}                 
         <!-- /.card -->
 
     </div>

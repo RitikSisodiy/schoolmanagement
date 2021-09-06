@@ -21,7 +21,7 @@
 
     <!-- local css -->
     <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}">
-     <link rel="icon" href="/media/schoolinfo/aryavart_vidhya_mandir_logo.png">
+     <link rel="icon" href="{{schoolinfo.icon.url}}">
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -52,6 +52,32 @@
     {% endblock custom_css %}
 
 <body>
+
+<!-- edit profile modal- -->
+  
+  <!-- Modal -->
+  <div class="modal fade bd-example-modal-lg" id="editprofilemodel" tabindex="-1" role="dialog" aria-labelledby="editprofilemodelTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Edit profile</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="showprofile">
+            <div class=" d-flex justify-content-center bd-highlight mb-3" role="status">
+                <div class="spinner-border ">
+                <span class="sr-only">Loading...</span>
+            </div>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end of edit profile modal -->
+
+
   <!-- Button trigger modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -94,7 +120,7 @@
                         <div class="admin-settings">
                             <a href="#">Admin</a>
                             <ul style="display: none;">
-                                <a href="{% url 'staffprofile' %}" class="text-dark"><li>Edit Profile</li></a>
+                                <a data-toggle="modal" data-target="#editprofilemodel" type="button" class="text-dark" onclick="loadprofileform()"><li>Edit Profile</li></a>
                                 <a href="{% url 'signout' %}" class="text-dark"><li>Logout</li></a>
                             </ul>
                         </div>
@@ -154,7 +180,7 @@
 <script src="/static/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/static/dist/js/demo.js"></script>
-
+function decorateinputfield(){
   var ele = document.getElementsByTagName('input')
   for(var i =0; i<ele.length; i++){
       if(ele[i].className=='' && ele[i].getAttribute('type') != 'checkbox'){
@@ -172,7 +198,8 @@
   for(var i =0; i<sel.length; i++){
       sel[i].setAttribute('class','form-control col')
   }
-  
+}
+decorateinputfield()
 </script>
     <script>
         $('.toggler').click(() => {
@@ -212,6 +239,31 @@
                     $("#mainsidebar").attr('class','main')}
         });
     </script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.js"></script>
+<script>
+  $(document).ready( function () {
+    $('table').DataTable();
+} );
+dTable = $('table').DataTable( {
+        "dom": "lrtip",
+    } );
+    $('input[name=table_search]').keyup(function() {
+        dTable.search($(this).val()).draw(); // this  is for customized searchbox with datatable search feature.
+    })
+function loadprofileform(){
+var httpx = new XMLHttpRequest
+    httpx.open("GET","{% url 'studentprofile' %}",true)
+httpx.send()
+httpx.onreadystatechange = function(){
+    if(httpx.readyState==4 && httpx.status==200){
+        document.getElementById('showprofile').innerHTML = httpx.responseText
+        decorateinputfield()
+    }
+}
+}
+</script>
     {% block custom_js %}
     {% endblock custom_js %}
 
