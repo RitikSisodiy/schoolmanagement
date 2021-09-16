@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from render_block.base import render_block_to_string
+# from render_block.base import render_block_to_string
 from .models import staffregister,Class,standard,result
 from student.models import studentregister,subject,leavestudent
 from django.core import serializers

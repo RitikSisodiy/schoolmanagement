@@ -1,0 +1,216 @@
+{% extends 'schoolmain/basic.html' %}
+{% load static %}
+{% block body %}
+<style>
+.page-navigation .active >a {
+    color: #ffffff;
+}
+</style>
+    <div class="high-school-page">
+        <div class="first">
+            <h1>{{feedata.standards}}</h1>
+            <a href="index.html">Home</a><i class="fa fa-caret-right"></i>
+            <a href="#">Academic</a><i class="fa fa-caret-right"></i>
+            <a href="#">{{feedata.standards}}</a>
+        </div>
+
+        <div class="main container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="page-navigation">
+                        <ul>
+                            {% for info in stdadmission %}
+                                <li class="{% if info.slug == currentfee %} active {% endif %}"><a href="/admission/{{info.slug}}">{{info.standards}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="recent-program">
+                        <h3 class="mb-4" style="font-size:24px; font-weight: 800;">Recent Program</h3>
+                        {% for p in programs%}
+                        <div class="row my-4 py-3">
+                            <div class="col-4">
+                                <div class="date">
+                                    <span>{{p.date}}</span>
+                                    <span>{{p.month}}</span>
+                                </div>
+                            </div>
+                            <div class="col-8 p-0">
+                                <h4 class="heading">{{p.title}}</h4>
+                                <ul>
+                                    <li><i class="fa fa-clock-o"></i> {{p.time}}</li>
+                                    <li><i class="fa fa-map-signs"></i> {{p.heading_title}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        {% endfor %}
+<!--                        <div class="row my-4 py-3">-->
+<!--                            <div class="col-4">-->
+<!--                                <div class="date">-->
+<!--                                    <span>15</span>-->
+<!--                                    <span>Feb</span>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="col-8 p-0">-->
+<!--                                <h4 class="heading">Pulling The Rope</h4>-->
+<!--                                <ul>-->
+<!--                                    <li><i class="fa fa-clock-o"></i> 12:02am to 11:02pm</li>-->
+<!--                                    <li><i class="fa fa-map-signs"></i> Bamboo Fresh</li>-->
+<!--                                </ul>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="row my-4 py-3">-->
+<!--                            <div class="col-4">-->
+<!--                                <div class="date">-->
+<!--                                    <span>15</span>-->
+<!--                                    <span>Feb</span>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="col-8 p-0">-->
+<!--                                <h4 class="heading">Pulling The Rope</h4>-->
+<!--                                <ul>-->
+<!--                                    <li><i class="fa fa-clock-o"></i> 12:02am to 11:02pm</li>-->
+<!--                                    <li><i class="fa fa-map-signs"></i> Bamboo Fresh</li>-->
+<!--                                </ul>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                    </div>
+                    <div class="recent-program">
+                        <h3 class="mb-4" style="font-size:24px; font-weight: 800;">Activities & Syllabus</h3>
+                        {% for a in active %}
+                        <div class="row my-4 py-3">
+                            <div class="col-4">
+                                <img style="border-radius: 10px;" src="/media/{{a.img}}" alt=""
+                                    class="img-fluid">
+                            </div>
+                            <div class="col-8 p-0">
+                                <h3 style="font-size: 20px; font-weight: 700;">{{a.title}}</h3>
+                                <p style="font-size: 16px; color: #808080;">{{a.content}}                                </p>
+                            </div>
+                        </div>
+                        {% endfor %}
+<!--                        <div class="row my-4 py-3">-->
+<!--                            <div class="col-4">-->
+<!--                                <img style="border-radius: 10px;" src="{% static 'img/square-shape-img3.jpg' %}" alt=""-->
+<!--                                    class="img-fluid">-->
+<!--                            </div>-->
+<!--                            <div class="col-8 p-0">-->
+<!--                                <h3 style="font-size: 20px; font-weight: 700;">Fun Building Blocks</h3>-->
+<!--                                <p style="font-size: 16px; color: #808080;">Vestibulum nec ipsum sed erat ullamcorper-->
+<!--                                    feugiat. Suspendisse potenti-->
+<!--                                </p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="row my-4 py-3">-->
+<!--                            <div class="col-4">-->
+<!--                                <img style="border-radius: 10px;" src="{% static 'img/square-shape-img3.jpg' %}" alt=""-->
+<!--                                    class="img-fluid">-->
+<!--                            </div>-->
+<!--                            <div class="col-8 p-0">-->
+<!--                                <h3 style="font-size: 20px; font-weight: 700;">Fun Building Blocks</h3>-->
+<!--                                <p style="font-size: 16px; color: #808080;">Vestibulum nec ipsum sed erat ullamcorper-->
+<!--                                    feugiat. Suspendisse potenti-->
+<!--                                </p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                    </div>
+                    <div class="for-addmisson">
+                         {% for message in messages  %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>{{ message }} </strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+      {% endfor %}
+
+                        <form action="" method="post">
+                            {% csrf_token %}
+                        <div class="form">
+                            <div class="mb-3">
+                                <input type="text" class="rounded-pill" name="name" id="formGroupExampleInput"
+                                    placeholder="Your Name">
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="rounded-pill" name="email" id="colFormLabelLg"
+                                    placeholder="Email Address">
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="rounded-pill" name="contact_no" id="formGroupExampleInput2"
+                                    placeholder="Phone Number">
+                            </div>
+
+                            <div class="mb-3">
+                                <input type="text" class="rounded-pill" name="messages" id="formGroupExampleInput"
+                                    placeholder="Message">
+                            </div>
+                            <div class="mb-3">
+                                <button type="submit" class="button rounded-pill">Submit Now</button>
+                            </div>
+                        </div>
+                            </form>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="second">
+                        <div class="img d-flex justify-content-center align-items-center">
+                            <img src="/media/{{details.0.image}}" class="img-fluid ">
+                        </div>
+                        <p>{{details.0.content}}</p>
+                    </div>
+                    <div class="third">
+                        <h3>Curriculum Framework</h3>
+                        <p>{{details.0.curri_content}}</p>
+                        <div class="row list">
+                            <div class="col-lg-6">
+                                <ul>
+                                    {{details.0.curri_point|safe}}
+                                </ul>
+                            </div>
+                            <div class="col-lg-6">
+                                <ul>
+                               {{details.0.curri_point|safe}}
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fourth">
+                        <div class="row">
+                            <div class="col-lg-6 px-lg-3 px-0 order-2">
+                                <img src="/media/{{details.0.content_img}}" alt="" class="img-fluid ">
+                            </div>
+                            <div class="col-lg-6 px-lg-3 px-0 order-1">
+                                <h4 class="heading">Academics</h4>
+                                <p> {{details.0.accademics_content}}.</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 px-lg-3 px-0 order-1">
+                                <img src="/media/{{details.0.content_img}}" alt="" class="img-fluid ">
+                            </div>
+                            <div class="col-lg-6 px-lg-3 px-0 order-2">
+                                <h4 class="heading">Events</h4>
+                                <p>{{details.0.event_content}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 px-lg-3 px-0 order-2">
+                                <img src="/media/{{details.0.content_img}}" alt="" class="img-fluid ">
+                            </div>
+                            <div class="col-lg-6 px-lg-3 px-0 order-1">
+                                <h4 class="heading">Clubs</h4>
+                                <p>{{details.0.club_content}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--footer start-->
+
+
+ {% endblock %}

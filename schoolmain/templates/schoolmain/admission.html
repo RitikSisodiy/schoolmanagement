@@ -1,6 +1,15 @@
 {% extends 'schoolmain/basic.html' %}
 {% load static %}
 {% block body %}
+{% for message in messages  %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>{{ message }} </strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+      {% endfor %}
+
     <div class="admission-page">
         <div class="first">
             <h1>Admisson</h1>
@@ -108,84 +117,87 @@
                     <br><span class="span"></span>
                 </h2>
             </div>
+
+
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3 col-sm-6 col-12">
-                        <div class="fee-card">
-                            <div class="title">
-                                <h3>Kinder Garden</h3>
-                                <div class="price">
-                                    <span class="curency">$</span><span class="prices">750</span><span
-                                        class="per-annum">/per year</span>
-                                </div>
-                                <ul>
-                                    <li>Travel Bus Fees</li>
-                                    <li>Tuition Fees All Subject</li>
-                                    <li>Food & Snacks</li>
-                                    <li>Dress & Books Notes</li>
-                                    <li>Other Activities</li>
-                                </ul>
-                                <button>Register Now</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 col-12">
-                        <div class="fee-card" style="background: #f0aa00;">
-                            <div class="title">
-                                <h3>Small School</h3>
-                                <div class="price">
-                                    <span class="curency">$</span><span class="prices">950</span><span
-                                        class="per-annum">/per year</span>
-                                </div>
-                                <ul>
-                                    <li>Travel Bus Fees</li>
-                                    <li>Tuition Fees All Subject</li>
-                                    <li>Food & Snacks</li>
-                                    <li>Dress & Books Notes</li>
-                                    <li>Other Activities</li>
-                                </ul>
-                                <button>Register Now</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 col-12">
-                        <div class="fee-card" style="background:#b496fa;">
-                            <div class="title">
-                                <h3>Middle School</h3>
-                                <div class="price">
-                                    <span class="curency">$</span><span class="prices">850</span><span
-                                        class="per-annum">/per year</span>
-                                </div>
-                                <ul>
-                                    <li>Travel Bus Fees</li>
-                                    <li>Tuition Fees All Subject</li>
-                                    <li>Food & Snacks</li>
-                                    <li>Dress & Books Notes</li>
-                                    <li>Other Activities</li>
-                                </ul>
-                                <button>Register Now</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 col-12">
+
+                    {% for info in stdadmission %}
+                    <div class="col-lg-3 col-sm-6 col-12" >
                         <div class="fee-card" style="background: #ff6464;">
                             <div class="title">
-                                <h3>High School</h3>
+                                <h3>{{info.standards}}</h3>
                                 <div class="price">
-                                    <span class="curency">$</span><span class="prices">650</span><span
-                                        class="per-annum">/per year</span>
+                                    <span class="curency">$</span><span class="prices">{{info.annualfee}}</span><span
+                                        class="per-annum">/{{info.yearlysormonthly}}</span>
                                 </div>
                                 <ul>
-                                    <li>Travel Bus Fees</li>
-                                    <li>Tuition Fees All Subject</li>
-                                    <li>Food & Snacks</li>
-                                    <li>Dress & Books Notes</li>
-                                    <li>Other Activities</li>
+                                    {{info.content|safe}}
                                 </ul>
-                                <a href="{% url "highschooladmission" %}"><button>Register Now</button></a>
+                                <p><a href="/admission/{{info.slug}}"><button style="background: lightblue;">More Details</button></a></p>
+                                <p><button type="button" style="background: lightblue; class="carousel-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Register Now</button></p>
+
                             </div>
                         </div>
                     </div>
+                    {% endfor %}
+<!--                    <div class="col-lg-3 col-sm-6 col-12">-->
+<!--                        <div class="fee-card" style="background: #f0aa00;">-->
+<!--                            <div class="title">-->
+<!--                                <h3>Small School</h3>-->
+<!--                                <div class="price">-->
+<!--                                    <span class="curency">$</span><span class="prices">950</span><span-->
+<!--                                        class="per-annum">/per year</span>-->
+<!--                                </div>-->
+<!--                                <ul>-->
+<!--                                    <li>Travel Bus Fees</li>-->
+<!--                                    <li>Tuition Fees All Subject</li>-->
+<!--                                    <li>Food & Snacks</li>-->
+<!--                                    <li>Dress & Books Notes</li>-->
+<!--                                    <li>Other Activities</li>-->
+<!--                                </ul>-->
+<!--                                <a href="{% url "smallschooladmission" %}"><button>Register Now</button></a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-lg-3 col-sm-6 col-12">-->
+<!--                        <div class="fee-card" style="background:#b496fa;">-->
+<!--                            <div class="title">-->
+<!--                                <h3>Middle School</h3>-->
+<!--                                <div class="price">-->
+<!--                                    <span class="curency">$</span><span class="prices">850</span><span-->
+<!--                                        class="per-annum">/per year</span>-->
+<!--                                </div>-->
+<!--                                <ul>-->
+<!--                                    <li>Travel Bus Fees</li>-->
+<!--                                    <li>Tuition Fees All Subject</li>-->
+<!--                                    <li>Food & Snacks</li>-->
+<!--                                    <li>Dress & Books Notes</li>-->
+<!--                                    <li>Other Activities</li>-->
+<!--                                </ul>-->
+<!--                                <a href="{% url "middleschooladmission" %}"><button>Register Now</button></a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-lg-3 col-sm-6 col-12">-->
+<!--                        <div class="fee-card" style="background: #ff6464;">-->
+<!--                            <div class="title">-->
+<!--                                <h3>High School</h3>-->
+<!--                                <div class="price">-->
+<!--                                    <span class="curency">$</span><span class="prices">650</span><span-->
+<!--                                        class="per-annum">/per year</span>-->
+<!--                                </div>-->
+<!--                                <ul>-->
+<!--                                    <li>Travel Bus Fees</li>-->
+<!--                                    <li>Tuition Fees All Subject</li>-->
+<!--                                    <li>Food & Snacks</li>-->
+<!--                                    <li>Dress & Books Notes</li>-->
+<!--                                    <li>Other Activities</li>-->
+<!--                                </ul>-->
+<!--                                <a href="{% url "highschooladmission" %}"><button>Register Now</button></a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
             </div>
         </div>
@@ -242,4 +254,64 @@
         </div>
     </div>
     <!--footer start-->
+ <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" style="color:solid black;" id="exampleModalLabel">Ask About Kids Acts</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+      </div>
+      <div class="modal-body">
+<!--          <div class="col-md-6">-->
+
+                        <form action="" method="post">
+                        {% csrf_token %}
+                            <div class="form">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" name="kname" id="formGroupExampleInput"
+                                    placeholder="Your Name">
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" name="email" id="colFormLabelLg"
+                                    placeholder="Email Address">
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" name="phone_number" id="formGroupExampleInput2"
+                                    placeholder="Phone Number">
+                            </div>
+                            <div class="mb-3">
+                                <select class="form-select form-control" name="studying" id="autoSizingSelect"
+                                    placeholder="Studying Class">
+                                    <option selected>Studying Class</option>
+                                      <option value="1">1st</option>
+                                    <option value="2">2nd</option>
+                                    <option value="3">3rd</option>
+                                    <option value="1">4th</option>
+                                    <option value="2">5th</option>
+                                    <option value="3">6th</option>
+                                    <option value="1">7th</option>
+                                    <option value="2">8th</option>
+                                    <option value="3">9th</option>
+                                    <option value="3">10th</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" name="requirement" id="formGroupExampleInput"
+                                    placeholder="Type Your Requirements">
+                            </div>
+                             <div class="mb-3">
+                                <button type="submit" style="background:#f0aa00;" class="button form-control">Submit Now</button>
+                            </div>
+
+                        </form>
+
+
+                    </div>
+       </div>
+
+    </div>
+  </div>
+</div>
+
   {% endblock %}

@@ -57,7 +57,7 @@
                     <li class="{% if request.path == schoolindex %}active{% endif %}" style="--color: #669900;">
                         <a href="{{schoolindex}}">Home</a>
                     </li>
-                    {% url "schoolabout" as schoolabout %}
+<!--                    {% url "schoolabout" as schoolabout %}-->
                     <li class="dropdown {% if request.path == schoolabout %}active{% endif %}" style="--color: #ff0080;">
                         <a href="{{schoolabout}}"> About us</a>
                     </li>
@@ -114,16 +114,19 @@
                         </a>
                     </div>
                 </div>
+
                 <div class="about-school col-sm-3" style="margin-top: 30px;">
-                    <h3 style="font-weight: bold;">About School</h3>
+                    <h3> <a href="/about" style="font-weight: bold;color: white;">About School</a></h3>
+
                     <ul>
-                        <li>
-                            <a href="" style="margin-top: 20px;color: white; ">
+                        {% url "schoolabout" as schoolabout %}
+                        <li class="{% if request.path == schoolabout %}active{% endif %}">
+                            <a href="{{schoolabout}}" style="margin-top: 20px;color: white; ">
                                 General Information
                             </a>
                         </li>
                         <li>
-                            <a href="" style="margin-top: 20px;color: white; ">
+                            <a href="/about/" style="margin-top: 20px;color: white; ">
                                 Who We Are
                             </a>
                         </li>

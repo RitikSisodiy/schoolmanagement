@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from myapp.models import otp
 from staff.models import staffregister
 from student.models import studentregister
+# from bootstrap_modal_forms.mixins import PopRequestMixin, CreateUpdateAjaxMixin
 
 class userRegister(ModelForm):
     password = forms.CharField(widget=forms.PasswordInput,label='Password')

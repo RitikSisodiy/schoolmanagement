@@ -3,6 +3,12 @@
     padding: 0;
     box-sizing: border-box;
 }
+/*  body{
+        background-image: url(/static/schoolmainstatic/img/slider3-bg.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-color:lighgray;
+} */
 
 a {
     text-decoration: none!important;
@@ -10,6 +16,7 @@ a {
 
 html, body {
     overflow: hidden;
+
 }
 
 .main {

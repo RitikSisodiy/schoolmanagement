@@ -1,6 +1,22 @@
 {% extends 'schoolmain/basic.html' %}
 {% load static %}
 {% block body %}
+<!--{% if messages %}-->
+<!--<ul class="messages">-->
+<!--    {% for message in messages %}-->
+<!--    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>-->
+<!--    {% endfor %}-->
+<!--</ul>-->
+<!--{% endif %}-->
+ {% for message in messages  %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>{{ message }} </strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+      {% endfor %}
+
 
 
 
@@ -22,7 +38,10 @@
                                 a Diverse and Dynamic World.</p>
                         </div>
 
-                        <button class="carousel-btn">Enroll Now</button>
+<!--                        <button class="carousel-btn">Enroll Now</button>-as->
+         <button type="button" class="carousel-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Enroll Now</button>
+
+
 
                     </div>
                 </div>
@@ -37,7 +56,9 @@
                             <li> Universal Workshop for Childrens</li>
 
                         </ul>
-                        <button class="carousel-btn">Enroll Now</button>
+<!--                        <button class="carousel-btn">Enroll Now</button>-->
+                         <button type="button" class="carousel-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Enroll Now</button>
+
                     </div>
                 </div>
                 <div class="carousel-item item3">
@@ -51,7 +72,8 @@
                                 a Diverse and Dynamic World.</p>
                         </div>
 
-                        <button class="carousel-btn">Enroll Now</button>
+<!--                        <button class="carousel-btn">Enroll Now</button>-->
+                         <button type="button" class="carousel-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Enroll Now</button>
 
 
                     </div>
@@ -275,38 +297,53 @@
                 </div>
 
                 <div class="col-md-6">
+
+
+                    <form action="" method="post">
+                        {% csrf_token %}
                     <div class="form">
-                        <h2>
-                            Ask About Kids Acts</h1>
+                        <h2>Ask About Kids Acts</h2>
+
                             <div class="mb-3">
-                                <input type="text" class="rounded-pill" id="formGroupExampleInput"
+                                <input type="text" class="rounded-pill" name="kname" id="formGroupExampleInput"
                                     placeholder="Your Name">
                             </div>
                             <div class="mb-3">
-                                <input type="email" class="rounded-pill" id="colFormLabelLg"
+                                <input type="email" class="rounded-pill" name="email" id="colFormLabelLg"
                                     placeholder="Email Address">
                             </div>
                             <div class="mb-3">
-                                <input type="text" class="rounded-pill" id="formGroupExampleInput2"
+                                <input type="text" class="rounded-pill" name="phone_number" id="formGroupExampleInput2"
                                     placeholder="Phone Number">
                             </div>
                             <div class="mb-3">
-                                <select class="form-select rounded-pill" id="autoSizingSelect"
+                                <select class="form-select rounded-pill" name="studying" id="autoSizingSelect"
                                     placeholder="Studying Class">
                                     <option selected>Studying Class</option>
-                                    <option value="1">First std</option>
-                                    <option value="2">Second std</option>
-                                    <option value="3">Third std</option>
+                                    <option value="1">1st</option>
+                                    <option value="2">2nd</option>
+                                    <option value="3">3rd</option>
+                                    <option value="1">4th</option>
+                                    <option value="2">5th</option>
+                                    <option value="3">6th</option>
+                                    <option value="1">7th</option>
+                                    <option value="2">8th</option>
+                                    <option value="3">9th</option>
+                                    <option value="3">10th</option>
+
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <input type="text" class="rounded-pill" id="formGroupExampleInput"
+                                <input type="text" class="rounded-pill" name="requirement" id="formGroupExampleInput"
                                     placeholder="Type Your Requirements">
                             </div>
                             <div class="mb-3">
                                 <button type="submit" class="button rounded-pill">Submit Now</button>
                             </div>
                     </div>
+                    </form>
+
+
                 </div>
             </div>
         </div>
@@ -477,5 +514,75 @@
 
         <!-- eighth end -->
     <!--footer start-->
+<!--        Model form for popup-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" style="color:solid black;" id="exampleModalLabel">Ask About Kids Acts</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+      </div>
+      <div class="modal-body">
+<!--          <div class="col-md-6">-->
+
+                        <form action="" method="post">
+                        {% csrf_token %}
+                            <div class="form">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" name="kname" id="formGroupExampleInput"
+                                    placeholder="Your Name">
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" name="email" id="colFormLabelLg"
+                                    placeholder="Email Address">
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" name="phone_number" id="formGroupExampleInput2"
+                                    placeholder="Phone Number">
+                            </div>
+                            <div class="mb-3">
+                                <select class="form-select form-control" name="studying" id="autoSizingSelect"
+                                    placeholder="Studying Class">
+                                    <option selected>Studying Class</option>
+                                      <option value="1">1st</option>
+                                    <option value="2">2nd</option>
+                                    <option value="3">3rd</option>
+                                    <option value="1">4th</option>
+                                    <option value="2">5th</option>
+                                    <option value="3">6th</option>
+                                    <option value="1">7th</option>
+                                    <option value="2">8th</option>
+                                    <option value="3">9th</option>
+                                    <option value="3">10th</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" name="requirement" id="formGroupExampleInput"
+                                    placeholder="Type Your Requirements">
+                            </div>
+                        </form>
+
+                            <div class="mb-3">
+                                <button type="submit" style="background:#f0aa00;" class="button form-control">Submit Now</button>
+                            </div>
+
+                    </div>
+       </div>
+
+    </div>
+  </div>
+</div>
 
 {% endblock %}
+        <script>
+            $('#exampleModal').on('show.bs.modal', function (event) {
+              var button = $(event.relatedTarget) // Button that triggered the modal
+              var recipient = button.data('whatever') // Extract info from data-* attributes
+              // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+              // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+              var modal = $(this)
+              modal.find('.modal-title').text('New message to ' + recipient)
+              modal.find('.modal-body input').val(recipient)
+})
+        </script>

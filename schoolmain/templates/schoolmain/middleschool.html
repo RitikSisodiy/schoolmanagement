@@ -1,0 +1,218 @@
+{% extends 'schoolmain/basic.html' %}
+{% load static %}
+{% block body %}
+    <div class="high-school-page">
+        <div class="first">
+            <h1>High School</h1>
+            <a href="index.html">Home</a><i class="fa fa-caret-right"></i>
+            <a href="#">Academic</a><i class="fa fa-caret-right"></i>
+            <a href="#">High School</a>
+        </div>
+
+        <div class="main container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="page-navigation">
+                        <ul>
+                             <li>Kindergarden</li>
+                             <li >Small School</li>
+                             <li class = "active">Middle School</li>
+                             <li>High School</li>
+                        </ul>
+                    </div>
+                    <div class="recent-program">
+                        <h3 class="mb-4" style="font-size:24px; font-weight: 800;">Recent Program</h3>
+                        <div class="row my-4 py-3">
+                            <div class="col-4">
+                                <div class="date">
+                                    <span>15</span>
+                                    <span>Feb</span>
+                                </div>
+                            </div>
+                            <div class="col-8 p-0">
+                                <h4 class="heading">Pulling The Rope</h4>
+                                <ul>
+                                    <li><i class="fa fa-clock-o"></i> 12:02am to 11:02pm</li>
+                                    <li><i class="fa fa-map-signs"></i> Bamboo Fresh</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row my-4 py-3">
+                            <div class="col-4">
+                                <div class="date">
+                                    <span>15</span>
+                                    <span>Feb</span>
+                                </div>
+                            </div>
+                            <div class="col-8 p-0">
+                                <h4 class="heading">Pulling The Rope</h4>
+                                <ul>
+                                    <li><i class="fa fa-clock-o"></i> 12:02am to 11:02pm</li>
+                                    <li><i class="fa fa-map-signs"></i> Bamboo Fresh</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row my-4 py-3">
+                            <div class="col-4">
+                                <div class="date">
+                                    <span>15</span>
+                                    <span>Feb</span>
+                                </div>
+                            </div>
+                            <div class="col-8 p-0">
+                                <h4 class="heading">Pulling The Rope</h4>
+                                <ul>
+                                    <li><i class="fa fa-clock-o"></i> 12:02am to 11:02pm</li>
+                                    <li><i class="fa fa-map-signs"></i> Bamboo Fresh</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="recent-program">
+                        <h3 class="mb-4" style="font-size:24px; font-weight: 800;">Activities & Syllabus</h3>
+                        <div class="row my-4 py-3">
+                            <div class="col-4">
+                                <img style="border-radius: 10px;" src="{% static 'img/square-shape-img3.jpg' %}" alt=""
+                                    class="img-fluid">
+                            </div>
+                            <div class="col-8 p-0">
+                                <h3 style="font-size: 20px; font-weight: 700;">Fun Building Blocks</h3>
+                                <p style="font-size: 16px; color: #808080;">Vestibulum nec ipsum sed erat ullamcorper
+                                    feugiat. Suspendisse potenti
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row my-4 py-3">
+                            <div class="col-4">
+                                <img style="border-radius: 10px;" src="{% static 'img/square-shape-img3.jpg' %}" alt=""
+                                    class="img-fluid">
+                            </div>
+                            <div class="col-8 p-0">
+                                <h3 style="font-size: 20px; font-weight: 700;">Fun Building Blocks</h3>
+                                <p style="font-size: 16px; color: #808080;">Vestibulum nec ipsum sed erat ullamcorper
+                                    feugiat. Suspendisse potenti
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row my-4 py-3">
+                            <div class="col-4">
+                                <img style="border-radius: 10px;" src="{% static 'img/square-shape-img3.jpg' %}" alt=""
+                                    class="img-fluid">
+                            </div>
+                            <div class="col-8 p-0">
+                                <h3 style="font-size: 20px; font-weight: 700;">Fun Building Blocks</h3>
+                                <p style="font-size: 16px; color: #808080;">Vestibulum nec ipsum sed erat ullamcorper
+                                    feugiat. Suspendisse potenti
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="for-addmisson">
+                        <div class="form">
+                            <div class="mb-3">
+                                <input type="text" class="rounded-pill" id="formGroupExampleInput"
+                                    placeholder="Your Name">
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="rounded-pill" id="colFormLabelLg"
+                                    placeholder="Email Address">
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="rounded-pill" id="formGroupExampleInput2"
+                                    placeholder="Phone Number">
+                            </div>
+
+                            <div class="mb-3">
+                                <input type="text" class="rounded-pill" id="formGroupExampleInput"
+                                    placeholder="Message">
+                            </div>
+                            <div class="mb-3">
+                                <button type="submit" class="button rounded-pill">Submit Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="second">
+                        <div class="img d-flex justify-content-center align-items-center">
+                            <img src="{% static 'img/squareimgs.png' %}" class="img-fluid ">
+                        </div>
+                        <p>In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Sed fringilla mauris sit amet
+                            nibh. Donec sodales sagittis magna. Donec quam felis, ultricies nec, pellentesque eu. Sed
+                            fringilla mauris sit amet nibh. Donec sodales sagittis magna. Cum sociis natoque penatibus
+                            et magnis dis parturient montes. nascetur ridiculus mus. rhoncus ut, imperdiet a, venenatis
+                            vitae, justo. Aliquam lorem ante natoque penatibus</p>
+                    </div>
+                    <div class="third">
+                        <h3>Curriculum Framework</h3>
+                        <p>Cum sociis natoque penatibus et magnis dis parturient montes. nascetur ridiculus mus. Donec
+                            quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Cum sociis natoque penatibus
+                            et magnis dis parturient donec quam felis, ultricies nec. , pellentesque eu, pretium quis,
+                            sem.</p>
+                        <div class="row list">
+                            <div class="col-lg-6">
+                                <ul>
+                                    <li>Children’s developmental needs</li>
+                                    <li>Physical, affective, social and aesthetic aspects for children’s holistic
+                                        development</li>
+                                    <li>Relate to children’s experiences and interests</li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6">
+                                <ul>
+                                    <li> Foster children’s knowledge, skills and attitudes</li>
+                                    <li>Pre-Primary level is customised to meet the requirements of young students</li>
+                                    <li>Cater to the cognitive, language</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fourth">
+                        <div class="row">
+                            <div class="col-lg-6 px-lg-3 px-0 order-2">
+                                <img src="{% static 'img/palli-kidplay.jpg' %}" alt="" class="img-fluid ">
+                            </div>
+                            <div class="col-lg-6 px-lg-3 px-0 order-1">
+                                <h4 class="heading">Academics</h4>
+                                <p>In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Sed fringilla mauris
+                                    sit amet nibh. Donec sodales sagittis magna.</p>
+                                <p> Classes LKG, UKG have 5 sections each with a maximum strength of 30 students per
+                                    section.</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 px-lg-3 px-0 order-1">
+                                <img src="{% static 'img/palli-kidplay.jpg' %}" alt="" class="img-fluid ">
+                            </div>
+                            <div class="col-lg-6 px-lg-3 px-0 order-2">
+                                <h4 class="heading">Events</h4>
+                                <p>In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Sed fringilla mauris
+                                    sit amet nibh. Donec sodales sagittis magna.</p>
+                                <p> Classes LKG, UKG have 5 sections each with a maximum strength of 30 students per
+                                    section.</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 px-lg-3 px-0 order-2">
+                                <img src="{% static 'img/palli-kidplay.jpg' %}" alt="" class="img-fluid ">
+                            </div>
+                            <div class="col-lg-6 px-lg-3 px-0 order-1">
+                                <h4 class="heading">Clubs</h4>
+                                <p>In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Sed fringilla mauris
+                                    sit amet nibh. Donec sodales sagittis magna.</p>
+                                <p> Classes LKG, UKG have 5 sections each with a maximum strength of 30 students per
+                                    section.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--footer start-->
+
+
+ {% endblock %}
