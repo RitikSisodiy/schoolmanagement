@@ -26,7 +26,7 @@
                     </div>
                     <div class="recent-program">
                         <h3 class="mb-4" style="font-size:24px; font-weight: 800;">Recent Program</h3>
-                        {% for p in programs%}
+                        {% for p in program %}
                         <div class="row my-4 py-3">
                             <div class="col-4">
                                 <div class="date">
@@ -43,37 +43,10 @@
                             </div>
                         </div>
                         {% endfor %}
-<!--                        <div class="row my-4 py-3">-->
-<!--                            <div class="col-4">-->
-<!--                                <div class="date">-->
-<!--                                    <span>15</span>-->
-<!--                                    <span>Feb</span>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="col-8 p-0">-->
-<!--                                <h4 class="heading">Pulling The Rope</h4>-->
-<!--                                <ul>-->
-<!--                                    <li><i class="fa fa-clock-o"></i> 12:02am to 11:02pm</li>-->
-<!--                                    <li><i class="fa fa-map-signs"></i> Bamboo Fresh</li>-->
-<!--                                </ul>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="row my-4 py-3">-->
-<!--                            <div class="col-4">-->
-<!--                                <div class="date">-->
-<!--                                    <span>15</span>-->
-<!--                                    <span>Feb</span>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="col-8 p-0">-->
-<!--                                <h4 class="heading">Pulling The Rope</h4>-->
-<!--                                <ul>-->
-<!--                                    <li><i class="fa fa-clock-o"></i> 12:02am to 11:02pm</li>-->
-<!--                                    <li><i class="fa fa-map-signs"></i> Bamboo Fresh</li>-->
-<!--                                </ul>-->
-<!--                            </div>-->
-<!--                        </div>-->
+
                     </div>
+
+<!--                   activity and sullabus-->
                     <div class="recent-program">
                         <h3 class="mb-4" style="font-size:24px; font-weight: 800;">Activities & Syllabus</h3>
                         {% for a in active %}
@@ -151,55 +124,47 @@
                     </div>
                 </div>
                 <div class="col-lg-9">
+
                     <div class="second">
                         <div class="img d-flex justify-content-center align-items-center">
-                            <img src="/media/{{details.0.image}}" class="img-fluid ">
+                            <img src="/media/{{feedata.cen_img}}" width="92%" class="img-fluid ">
                         </div>
-                        <p>{{details.0.content}}</p>
+                        <p>{{feedata.cen_content}}</p>
                     </div>
                     <div class="third">
-                        <h3>Curriculum Framework</h3>
-                        <p>{{details.0.curri_content}}</p>
-                        <div class="row list">
-                            <div class="col-lg-6">
-                                <ul>
-                                    {{details.0.curri_point|safe}}
-                                </ul>
-                            </div>
-                            <div class="col-lg-6">
-                                <ul>
-                               {{details.0.curri_point|safe}}
-
-                                </ul>
-                            </div>
-                        </div>
+                        <h3>{{feedata.title1}}</h3>
+                        <p>{{feedata.content1}}</p>
+                        {{feedata.content11|safe}}
                     </div>
                     <div class="fourth">
                         <div class="row">
                             <div class="col-lg-6 px-lg-3 px-0 order-2">
-                                <img src="/media/{{details.0.content_img}}" alt="" class="img-fluid ">
+                                <img src="/media/{{feedata.image2}}" alt="" class="img-fluid ">
                             </div>
                             <div class="col-lg-6 px-lg-3 px-0 order-1">
-                                <h4 class="heading">Academics</h4>
-                                <p> {{details.0.accademics_content}}.</p>
+                                <h4 class="heading">{{feedata.title2}}</h4>
+                                <p>{{feedata.content2}}</p>
+                                <p> {{feedata.content22}}.</p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-6 px-lg-3 px-0 order-1">
-                                <img src="/media/{{details.0.content_img}}" alt="" class="img-fluid ">
+                                <img src="/media/{{feedata.image3}}" alt="" class="img-fluid ">
                             </div>
                             <div class="col-lg-6 px-lg-3 px-0 order-2">
-                                <h4 class="heading">Events</h4>
-                                <p>{{details.0.event_content}}</p>
+                                <h4 class="heading">{{feedata.title3}}</h4>
+                                <p>{{feedata.content3}}</p>
+                                <p> {{feedata.content33}}</p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-6 px-lg-3 px-0 order-2">
-                                <img src="/media/{{details.0.content_img}}" alt="" class="img-fluid ">
+                                <img src="/media/{{feedata.image4}}" alt="" class="img-fluid ">
                             </div>
                             <div class="col-lg-6 px-lg-3 px-0 order-1">
-                                <h4 class="heading">Clubs</h4>
-                                <p>{{details.0.club_content}}</p>
+                                <h4 class="heading">{{feedata.title4}}</h4>
+                                <p>{{feedata.content4}}</p>
+                                <p>{{feedata.content44}}.</p>
                             </div>
                         </div>
                     </div>

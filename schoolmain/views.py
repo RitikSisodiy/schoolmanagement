@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import  schoolifo,contactform,schoolfeeinfo,aboutlearning,feedetails,admissionform,recentprogram,activity
+from .models import  schoolifo,contactform,schoolfeeinfo,aboutlearning,admissionform,recentprogram,activity
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from myapp.settings import EMAIL_HOST_USER
@@ -87,10 +87,8 @@ def admission(request):
 def admissionfee(request, feeslug=""):
     feedata = get_object_or_404(schoolfeeinfo,slug=feeslug)
     fee = schoolfeeinfo.objects.all()
-    details = feedetails.objects.all()
-    programs = recentprogram.objects.all()
-    act = activity.objects.all()
-
+    program = recentprogram.objects.all()
+    active = activity.objects.all()
     if request.method == "POST":
         name = request.POST['name']
         email=request.POST['email']
@@ -100,8 +98,7 @@ def admissionfee(request, feeslug=""):
         admission.save()
         #     messages.success(request, "Your form is submiited")
         #     messages.error(request,"Form is not submitted")
-    return render(request,'schoolmain/school-fees-details.html',{'stdadmission':fee, 'feedata': feedata, 'currentfee':feeslug,'details':details,
-                                                                 'programs':programs,'active':act})
+    return render(request,'schoolmain/school-fees-details.html',{'stdadmission':fee, 'feedata': feedata, 'currentfee':feeslug,'program':program,'active':active})
 def kiddergarden(request):
     return render(request,'schoolmain/school-fees-details.html',{})
 def smallschool(request):
