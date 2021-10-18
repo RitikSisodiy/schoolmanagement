@@ -36,7 +36,6 @@ def staff(request):
     res['studentcountlist'] = studentcountlist
     if request.user.staffregister_set.all()[0].status == False:
         res['verify'] = 'notverifyed'
-    print("statis:",request.user.staffregister_set.all()[0].status)
     return render(request,'staff/dashboard.html',res)
 def studentinfo(request,std=None):
     if request.GET.get('id') is not None:
@@ -69,7 +68,6 @@ def studentresult(request,std):
     stuid = request.GET.get('stuid')
     if request.method == 'POST':
         form = examtypeForm(request.POST)
-        print("FDSDFSDFS",request.GET)
         if form.is_valid():
             form.save()
             messages.success(request,"Result is updated successfully")
@@ -78,7 +76,6 @@ def studentresult(request,std):
             messages.error(request,"invalid data please check the deatails")
     form = examtypeForm(initial={'Class': std.id})
     exam = examtype.objects.filter(Class=std.id)
-    print(exam)
     res = {
         'form':form,
         'exams':exam,
@@ -200,7 +197,6 @@ def viewresult(request,std=None):
     std = standard.objects.get(standard=std)
     stuid = request.GET.get('stuid')
     if request.method == 'POST':
-        print(request.POST)
         examobj = examtype.objects.get(id=examid)
         sublist = Class.objects.filter(standard=std.id)
         for sub in sublist:
@@ -330,7 +326,6 @@ def manageattendance(request):
     classid = request.GET.get('id')
     date = request.GET.get('date')
     if request.method == "POST":
-        print(request.POST)
         date = request.POST['attendance_date']
         classid = request.POST['classid']
         stulist = studentregister.objects.filter(standard=classid)

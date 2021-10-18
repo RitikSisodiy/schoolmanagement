@@ -1,7 +1,6 @@
 def per(obtain,max,resultobj=None):
     status = ''
     per = ((obtain*100)/max)
-    print()
     if per<33:
         status = 'Failed'
     if per>=33 and per<50:

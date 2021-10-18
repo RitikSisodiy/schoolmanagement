@@ -1,50 +1,109 @@
 {% extends 'staff/basic.html' %}
 {% block table %}
-  {% if messages %}
-                            <div class="form-group">
-                            <div class="col-12">
-                                {% for message in messages %}
-                                {% if message.tags == "error" %}
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
-                                    {{ message }}
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    </div>
-                                {% elif message.tags == "success" %}
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
-                                    {{ message }}
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    </div>
-                                {% endif %}
-                                {% endfor %}
-                            </div>
-                            </div>
-                            {% endif %}
-{% if stulist %}  
-   <table class="display table table-striped table-bordered dataTable my-3">
-       <thead>
-           <tr>
-               <th>SN.</th>
-               <th>name</th>
-               <th>class</th>
-               <th>Roll No.</th>
-               <th>result</th>
-           </tr>
-       </thead>
-       <tbody>
-           {% for row in stulist %}
-           <tr>
-               <td>{{forloop.counter}}</td>
-               <td>{{row.user.first_name}} {{row.user.last_name}}</td>
-               <td>{{row.standard}}</td>
-               <td>{{row.id|add:1000}}</td>
-               <td><a href="/?student={{row.user.first_name}} {{row.user.last_name}}&stuid={{row.id}}" class="btn btn-outline-primary btn-sm">view-result</a></td>
-           </tr>
-           {% endfor %}
-       </tbody>
-   </table>
+{% if messages %}
+<div class="form-group">
+    <div class="col-12">
+        {% for message in messages %}
+        {% if message.tags == "error" %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% elif message.tags == "success" %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% if stulist %}
+
+
+<div class="row">
+
+    <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">All Students</h3>
+
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="table-responsive p-2">
+                <table class="display table table-striped table-bordered dataTable my-3 text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>SN.</th>
+                            <th>name</th>
+                            <th>Father_name</th>
+                            <th>Mother_name</th>
+                            <th>schooler_no</th>
+                            <th>gender</th>
+                            <th>dob</th>
+                            <th>ssmid</th>
+                            <th>addhar_no</th>
+                            <th>address</th>
+                            <th>permanent_address</th>
+                            <th>account_no</th>
+                            <th>IFSC</th>
+                            <th>TC certificate</th>
+                            <th>Cast Certificate</th>
+                            <th>class</th>
+                            <th>Roll No.</th>
+                            <th>Result / Info</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in stulist %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{row.user.first_name}} {{row.user.last_name}}</td>
+                            <td>{{row.Father_name}}</td>
+                            <td>{{row.Mother_name}}</td>
+                            <td>{{row.schooler_no}}</td>
+                            <td>{{row.gender}}</td>
+                            <td>{{row.dob}}</td>
+                            <td>{{row.ssmid}}</td>
+                            <td>{{row.addhar_no}}</td>
+                            <td>{{row.address}}</td>
+                            <td>{{row.permanent_address}}</td>
+                            <td>{{row.account_no}}</td>
+                            <td>{{row.IFSC}}</td>
+                            <td><a target="_blank" href='/media/{{row.TC}}'><i class="fas fa-eye"></i> View</a></td>
+                            <td><a target="_blank" href='/media/{{row.castcertificate}}'><i class="fas fa-eye"></i>
+                                    View</a></td>
+                            <td>{{row.standard}}</td>
+                            <td>{{row.id|add:1000}}</td>
+                            <td><a
+                                    href="/staff/info/{{row.standard}}/?student={{row.user.first_name}} {{row.user.last_name}}&id={{row.id}}"><i
+                                        class="fas fa-edit"></i> Edit</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+    </div>
+</div>
+
 {% endif %}
 {% endblock %}

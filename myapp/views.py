@@ -68,7 +68,6 @@ def results(request):
     return redirect('index')
 def register(request):
     name = "student" if str(request.path).find('studentregister') != -1 else "staff"
-    print(name)
     if request.user.is_authenticated:
         return redirect(checkuser(request)[0])
     if request.method =='POST':
@@ -77,7 +76,6 @@ def register(request):
             form1 = StaffRegister(request.POST,request.FILES)
         else:
             form1 = StudentRegister(request.POST,request.FILES)
-        print(request.FILES)
         if form.is_valid() and form1.is_valid(): 
             username = res = ''.join(random.choices(string.ascii_uppercase +string.digits, k = 10))
             password = form.cleaned_data['password']
@@ -110,7 +108,6 @@ def signin(request):
             username = User.objects.get(email=form.cleaned_data['username']).username
             password = form.cleaned_data['password']
             user = authenticate(username=username,password=password)
-            print(user)
             if user is not None:
                 login(request,user)
                 return JsonResponse({'status':'ok','msg':'Login Success'})
@@ -136,7 +133,6 @@ def verifymail(request):
     verify = verify.replace(' ','+')
     if verify_token(verify,username,token):
         user = User.objects.get(email=username)
-        print(user.id)
         if staffregister.objects.filter(user = user.id).exists():
             user = staffregister.objects.filter(user = user.id)[0]
         if studentregister.objects.filter(user = user.id).exists():
@@ -201,6 +197,4 @@ def renderPdf(template, content,request):
         return None
 def updatenav(request):
     request.session['nav'] = request.GET.get('nav')
-    print(request.session['nav'])
-    print(request.GET.get('nav'))
     return HttpResponse("done")

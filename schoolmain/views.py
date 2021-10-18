@@ -39,7 +39,6 @@ def about(request):
     return render(request,'schoolmain/about.html',{})
 def contact(request):
     if request.method == "POST":
-        print(request.POST)
         name = request.POST['name']
         email = request.POST['email']
         address = request.POST['address']

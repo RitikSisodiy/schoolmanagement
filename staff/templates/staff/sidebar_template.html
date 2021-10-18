@@ -217,7 +217,7 @@
                  Student Leave
               </a>
             </li>
-            {% if request.user.is_superuser %}
+            {% if user.is_superuser %}
             <li class="nav-item">
               {% url 'schoolinfo' as schoolinfo %}
               {% url 'edit_course' course_id=id as edit_course %}
@@ -226,6 +226,7 @@
                  schoolinfo
               </a>
             </li>
+             <li class="nav-item my-5"></li>
           {% endif %}
 
 
