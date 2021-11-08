@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.admin import widgets
 from django.forms import ModelForm
 from django.contrib.auth.models import User
 from myapp.models import otp
@@ -51,7 +52,7 @@ class StaffRegister(ModelForm):
         else:
             raise forms.ValidationError("enter the valid phone number")
 class StudentRegister(ModelForm):
-        
+    
     def __init__(self, *args, **kwargs):
         super(StudentRegister, self).__init__(*args, **kwargs)
         for field_name in self.fields:
@@ -61,6 +62,7 @@ class StudentRegister(ModelForm):
                     field.widget = forms.TextInput(attrs={'placeholder':  field.label})
                 if type(field.widget) in (forms.PasswordInput,):
                     field.widget = forms.PasswordInput(render_value=False, attrs={'placeholder': 'password'})
+    addmission_date = forms.DateField(widget=widgets.AdminDateWidget)
     class Meta:
         model = studentregister
         exclude = ('user','status','phonestatus')

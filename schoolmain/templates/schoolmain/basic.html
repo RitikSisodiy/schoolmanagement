@@ -26,8 +26,8 @@
         <div>
             <nav class="top-nav">
                 <ul class="left">
-                    <li><a href="#"><i class="fa fa-envelope"></i>info@example.com</a></li>
-                    <li><a href="#"><i class="fa fa-phone"></i>9826122818</a></li>
+                    <li><a href="#"><i class="fa fa-envelope"></i>{{schoolinfo.email}}</a></li>
+                    <li><a href="#"><i class="fa fa-phone"></i>{{schoolinfo.phone}}</a></li>
                 </ul>
                 <ul class="right">
                     <li>
@@ -47,8 +47,7 @@
         </div>
         <div class="nav-bar">
             <div class="logo">
-                <a style="color:black; font-weight: 1000;" href="#">Arya
-                    Virth Vidya Mandir</a>
+                <a style="color:black; font-weight: 1000;" href="#">{{schoolinfo.name}}</a>
             </div>
 
             <nav>
@@ -188,7 +187,7 @@
                     <div style="margin: 10px 0;">
                         <a href="#" style=" color: white;">
                             <i style="margin-right: 10px;" class="fa fa-envelope"
-                                aria-hidden="true"></i>support@domain.com</a>
+                                aria-hidden="true"></i>{{school.email}}</a>
                     </div>
                 </div>
             </div>
@@ -198,7 +197,7 @@
 
         <div class="container-fluid"
             style="background-color:#4054B2;;color: white;text-align: center;padding: 12px 14px">
-            <p>© 2020 Arya Virth Vidya Mandir – All Rights Reserved</p>
+            <p>© 2020 {{schoolinfo.name}} – All Rights Reserved</p>
 
         </div>
     </footer>

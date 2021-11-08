@@ -8,6 +8,8 @@ from myapp.forms import StaffRegister,userRegister,StudentRegister
 import random
 import string
 from schoolmain.models import schoolifo
+from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
 import json
 from django.contrib import messages
 from .forms import ClassForm,subjectForm,classtimingsForm,classtimings,examtypeForm,examtype,standardForm,updatestudentUserForm,schoolinfoForm
@@ -46,8 +48,8 @@ def studentinfo(request,std=None):
         form1 = updatestudentUserForm(instance=user.user)
         form= StudentRegister(instance=user)
         if request.method == "POST":
-            form = StudentRegister(request.POST,instance=user)
-            form1 = updatestudentUserForm(request.POST,instance=user.user)
+            form = StudentRegister(request.POST,request.FILES,instance=user)
+            form1 = updatestudentUserForm(request.POST,request.FILES,instance=user.user)
             if form.is_valid() and form1.is_valid():
                 form.save()
                 form1.save()
@@ -63,6 +65,17 @@ def studentinfo(request,std=None):
         'student':studentlist
     }
     return render(request,'staff/studentinfo.html',res)
+def delstudent(request,username=None):
+    if username is not None:
+        try:
+            userob = User.objects.get(username=username)
+            messages.success(request,f"{userob.first_name} {userob.last_name} is deleted successfully")
+            userob.delete()
+        except:
+            messages.error(request,"invalid request")
+    else:
+        messages.error(request,"invalid request")
+    return redirect('mystudentall')
 def studentresult(request,std):
     std = standard.objects.get(standard=std)
     stuid = request.GET.get('stuid')
@@ -191,7 +204,31 @@ def mystudent(request,std=None):
     return render(request,'staff/mystudent.html',res)
 def mystudentall(request):
     stulist = studentregister.objects.all()
-    return render(request,'staff/mystudentall.html',{'stulist':stulist})
+    res = {'stulist':stulist}
+    res['form'] = userRegister()
+    res['form1'] = StudentRegister()
+    if request.method == "POST":
+        res['form'] = userRegister(request.POST)
+        res['form1'] = StudentRegister(request.POST,request.FILES)
+        if res['form'].is_valid() and res['form1'].is_valid():
+            form = res['form']
+            form1 = res['form1']
+            username = res = ''.join(random.choices(string.ascii_uppercase +string.digits, k = 10))
+            password = form.cleaned_data['password']
+            obj = form.save(commit=False)
+            obj.username = username
+            obj.save()
+            user = User.objects.get(username=username)
+            user.password = make_password(password)
+            user.save()
+            obj = form1.save(commit=False)
+            obj.user = user
+            obj.save()
+            messages.success(request,str(form.instance.first_name)+ " "+str(form.instance.first_name) +" is Added Successfully")
+            return redirect(request.get_full_path())
+        else:
+            messages.error(request,'Invalid student data !')
+    return render(request,'staff/mystudentall.html',res)
 def viewresult(request,std=None):
     examid = request.GET.get('exam')
     std = standard.objects.get(standard=std)

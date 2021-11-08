@@ -65,7 +65,7 @@
                         
 
                     <div class="card-body">
-                        <form role="form" method="POST" action="">
+                        <form role="form" method="POST" action="" enctype="mu">
                             {% csrf_token %}
                             {{form1.as_p}}
                             {{form.as_p}}
@@ -75,6 +75,9 @@
 
                     <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Update Student</button>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Delete student
+                      </button>
                     </div>
                 </form>
                 </div>
@@ -85,6 +88,25 @@
 
     </div><!-- /.container-fluid -->
   </section>
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div style="display: none;">
+{% block formtitle %}
+<p class="text-danger">Are You Sure</p>
+{% endblock %}
+{% block addform %}
+<center>
+<p>You will Lose all  Data related to the student</p>
+</center>
+<div class="row">
+    <a href="{% url 'deletestudent' username=form1.instance.username %}" class="btn btn-danger my-2">Yes ! please</a>
+    <button class="btn btn-secondary" data-bs-dismiss="modal"  type="button"  data-dismiss="modal" aria-label="Close">Cancel</button>
+</div>
+{% endblock %}
+
+</div>
 
 {% endif %}
 {% endblock %}

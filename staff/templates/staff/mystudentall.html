@@ -30,7 +30,12 @@
 
     <div class="col-md-12">
         <!-- general form elements -->
+
         <div class="card">
+            <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal"
+                data-target="#exampleModal" data-backdrop='static' data-keyboard='false'>
+                Add-Students
+            </button>
             <div class="card-header">
                 <h3 class="card-title">All Students</h3>
 
@@ -107,3 +112,12 @@
 
 {% endif %}
 {% endblock %}
+{% block addform %}
+
+    <form action="" method="POST">{% csrf_token %}  
+        {{form.as_p}}
+        {{form1.as_p}}
+        <button type="submit" class="btn btn-outline-primary  my-5">Add-Student</button>
+    </form>
+{% endblock %}
+{% block formtitle %}Add Student{% endblock %}
