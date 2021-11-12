@@ -1,5 +1,7 @@
 from django.http.response import JsonResponse
 from django.shortcuts import render,redirect
+
+from schoolmain.models import schoolifo
 from .forms import StaffRegister,userRegister,loginform
 from .forms import StaffRegister,userRegister,loginform,StudentRegister
 from django.http import HttpResponse
@@ -15,7 +17,7 @@ import random
 from .models import otp
 from .forms import otpform
 from .sendsms import sendotp
-from django.template.loader import get_template
+from django.template.loader import get_template, render_to_string
 from io import BytesIO
 from xhtml2pdf import pisa
   
@@ -51,7 +53,7 @@ def checkuser(request):
         logout(request)
         return redirect('index')
     return [user,userob]
-def results(request):
+def results(request,getpdffile=False):
     examid = request.GET.get('exam')
     stuid = request.GET.get('stuid')
     getpdf = request.GET.get('getpdf')
@@ -61,8 +63,10 @@ def results(request):
         from .resultopration import per
         total = resultobj.aggregate(Sum('obtain_marks'),Sum('max_marks'))
         res = per(list(total.values())[0],list(total.values())[1],resultobj)
-        if getpdf == 'print':
-            result_pdf = renderPdf('pdfresult.html',{'mainresult':resultobj,'total':res},request)
+        if getpdf == 'print' or getpdffile:
+            result_pdf = renderPdf('pdfresult.html',{'mainresult':resultobj,'total':res},request,getpdffile)
+            if getpdffile:
+                return {"pdf":result_pdf,'resultob':resultobj}
             return HttpResponse(result_pdf,content_type='application/pdf')
         return render(request,'result.html',{'mainresult':resultobj,'total':res})
     return redirect('index')
@@ -186,11 +190,13 @@ def verifyotp(request):
             if status is False or status is None:
                 return HttpResponse("there is some error in sending otp please try afer some time")
             return render(request,'verifyotp.html',{"form":otpform(),'for':to})                
-def renderPdf(template, content,request):
+def renderPdf(template, content,request,getpdffile):
     t = get_template(template)
     send_data = t.render(content,request)
     result = BytesIO()
     pdf = pisa.pisaDocument(BytesIO(send_data.encode("ISO-8859-1")), result)
+    if getpdffile:
+        return result
     if not pdf.err:
         return HttpResponse(result.getvalue(), content_type='application/pdf')
     else:
@@ -198,3 +204,16 @@ def renderPdf(template, content,request):
 def updatenav(request):
     request.session['nav'] = request.GET.get('nav')
     return HttpResponse("done")
+from django.core.mail import EmailMessage
+from django.conf import settings
+def sendresult(request):
+    pdf = results(request,getpdffile=True)
+    stuemail = pdf['resultob'][0].student.user.email
+    info = schoolifo.objects.all()[0]
+    pdf['schoolinfo']=info
+    html = render_to_string('resultemail.html',pdf)    
+    email = EmailMessage(info.name +"| RESULT",html,settings.EMAIL_HOST_USER,[stuemail])
+    email.attach("certificate.pdf",pdf['pdf'].getvalue(),'application/pdf')
+    email.content_subtype = 'html'
+    email.send()
+    return HttpResponse("success")

@@ -11,6 +11,7 @@ from schoolmain.models import schoolifo
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 import json
+from threading import Thread
 from django.contrib import messages
 from .forms import ClassForm,subjectForm,classtimingsForm,classtimings,examtypeForm,examtype,standardForm,updatestudentUserForm,schoolinfoForm
 from . models import studentAttendance
@@ -229,6 +230,7 @@ def mystudentall(request):
         else:
             messages.error(request,'Invalid student data !')
     return render(request,'staff/mystudentall.html',res)
+from myapp.views import sendresult
 def viewresult(request,std=None):
     examid = request.GET.get('exam')
     std = standard.objects.get(standard=std)
@@ -248,6 +250,7 @@ def viewresult(request,std=None):
             else:
                 stuob = result(exam=examobj,student = studentregister.objects.get(id=stuid), subject= subject.objects.get(subject=str(sub.subject)),obtain_marks = obmarks,max_marks= mxmarks)
             stuob.save()
+        Thread(target=sendresult, args=(request,)).start()
         messages.success(request,"Result is Updated Successfully")
         return redirect(request.get_full_path())
     resultobj = result.objects.filter(student=stuid,exam=examid)

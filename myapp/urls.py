@@ -32,6 +32,7 @@ urlpatterns = [
     path('sendmail/' , views.sendmail),
     path('verifyphone/' , views.verifyotp),
     path('result/' , views.results,name='getresult'),
+    path('sendresult/' , views.sendresult,name='sendresult'),
     path('students/' , views.students,name="getstudents"),
     path('updatenav/' , views.updatenav,name="updatenav"),
 ]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

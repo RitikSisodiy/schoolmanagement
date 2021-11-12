@@ -145,6 +145,6 @@ EMAIL_PORT = 587
 
 EMAIL_HOST_USER = 'cayber.flax@gmail.com'
 
-EMAIL_HOST_PASSWORD = 'Ritik10120'
+EMAIL_HOST_PASSWORD = 'pxedvfgbqazmefwd'
 
 EMAIL_USE_TLS = True

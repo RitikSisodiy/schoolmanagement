@@ -157,12 +157,19 @@
 <button type="submit" class="btn btn-outline-success">Update-Result</button>
 <a href="/staff/result/delete/?exam={{mainresult.0.exam.id}}&stuid={{mainresult.0.student.id}}&date={{mainresult.0.exam.start_date}}" class="mx-2 btn btn-outline-danger">Delete-Result</a>
 <button  class="btn btn-outline-warning" type="button" onclick="$('#pdfsubmit').click()">Print-Result</button>
+<button  class="btn btn-outline-info mx-2" type="button" onclick="$('#sendresultsubmit').click()">Send-Result</button>
 </form>
 <form action="{% url 'getresult' %}" method="GET" style="display: none;">
     <input type="hidden" name="exam" value="{{request.GET.exam}}">
     <input type="hidden" name="stuid" value="{{request.GET.stuid}}">
     <input type="hidden" name="getpdf" value="print">
 <button  class="btn btn-outline-primary" type="submit" id="pdfsubmit" formtarget="_blank">Print-Result</button>
+</form>
+<form action="{% url 'sendresult' %}" method="GET" style="display: none;">
+    <input type="hidden" name="exam" value="{{request.GET.exam}}">
+    <input type="hidden" name="stuid" value="{{request.GET.stuid}}">
+    <input type="hidden" name="getpdf" value="print">
+<button  class="btn btn-outline-info" type="submit" id="sendresultsubmit" formtarget="_blank">Send Result</button>
 </form>
 
 
