@@ -139,12 +139,17 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST = 'smtp.gmail.com'
 
-EMAIL_PORT = 587
+# EMAIL_PORT = 587
 
-EMAIL_HOST_USER = 'cayber.flax@gmail.com'
+# EMAIL_HOST_USER = 'cayber.flax@gmail.com'
 
-EMAIL_HOST_PASSWORD = 'pxedvfgbqazmefwd'
+# EMAIL_HOST_PASSWORD = 'pxedvfgbqazmefwd'
 
-EMAIL_USE_TLS = True
+# EMAIL_USE_TLS = True
+
+
+EMAIL_HOST_USER = 'sales@cyberflax.tk'
+
+EMAIL_HOST_PASSWORD = 'Flax@2021'
