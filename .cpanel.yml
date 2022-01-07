@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - source /home/wt29jctjbes9/virtualenv/school/3.7/bin/activate && cd /home/wt29jctjbes9/school
+    - source /home/ztlzpllpqetq/virtualenv/school/3.7/bin/activate && cd /home/ztlzpllpqetq/school
     - pip install -r requirements.txt
     - python manage.py collectstatic --no-input
     - python manage.py migrate
