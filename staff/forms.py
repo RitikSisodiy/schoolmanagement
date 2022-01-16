@@ -1,5 +1,3 @@
-from socket import fromshare
-from turtle import title
 from django import forms
 from .models import classtimings,examtype,staffregister,User
 from django.contrib.admin import widgets
