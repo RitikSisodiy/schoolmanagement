@@ -1,8 +1,10 @@
+from socket import fromshare
+from turtle import title
 from django import forms
 from .models import classtimings,examtype,staffregister,User
 from django.contrib.admin import widgets
 from student.models import standard, Class,subject
-from schoolmain.models import schoolifo
+from schoolmain.models import Gallery, schoolifo
 
 class classtimingsForm(forms.ModelForm):
     timefrom = forms.TimeField(widget=widgets.AdminTimeWidget)
@@ -72,3 +74,13 @@ class schoolinfoForm(forms.ModelForm):
     class Meta:
         model = schoolifo
         exclude = ('id',)
+from django import forms
+class galleryForm(forms.ModelForm):
+    Imgages = forms.ImageField(widget=forms.FileInput({"multiple":True}))
+    class Meta:
+        model = Gallery
+        exclude = ('id',)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['description'].widget.attrs.update({'class': 'form-control'})
+        self.fields['title'].widget.attrs.update({'placeholder': 'Enter the title for the Gallery'})

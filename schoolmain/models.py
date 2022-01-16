@@ -1,3 +1,4 @@
+from pyexpat import model
 from django.db import models
 from ckeditor.fields import RichTextField
 # Create your models here.
@@ -79,4 +80,9 @@ class activity(models.Model):
     img = models.FileField(upload_to="img")
 
 
-
+class Gallery(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+class GalleryImage(models.Model):
+    gallery = models.ForeignKey(Gallery,on_delete=models.CASCADE,related_name="GalleryImage")
+    img = models.ImageField(upload_to="galleryIMges")

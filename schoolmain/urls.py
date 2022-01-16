@@ -11,4 +11,5 @@ urlpatterns = [
     path('admission/smallschool/', views.smallschool, name='smallschooladmission'),
     path('admission/middleschool/', views.middleschool, name='middleschooladmission'),
     path('learnings',views.learnings,name='learnings'),
+    path('gallery',views.gallery,name='gallerymainurl'),
 ]

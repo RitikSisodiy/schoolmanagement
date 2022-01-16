@@ -7,13 +7,13 @@ from django.core import serializers
 from myapp.forms import StaffRegister,userRegister,StudentRegister
 import random
 import string
-from schoolmain.models import schoolifo
+from schoolmain.models import schoolifo,GalleryImage,Gallery
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 import json
 from threading import Thread
 from django.contrib import messages
-from .forms import ClassForm,subjectForm,classtimingsForm,classtimings,examtypeForm,examtype,standardForm,updatestudentUserForm,schoolinfoForm
+from .forms import galleryForm,ClassForm,subjectForm,classtimingsForm,classtimings,examtypeForm,examtype,standardForm,updatestudentUserForm,schoolinfoForm
 from . models import studentAttendance
 # Create your views here.
 def staff(request):
@@ -451,3 +451,55 @@ def schoolinfo(request):
         form = schoolinfoForm(instance=schoolinfo)
         return render(request,'staff/schoolinfo.html',{"form":form})
     return redirect('staff')
+
+def gallery(request):
+    res={}
+    res['form'] = galleryForm()
+    if request.method=="POST":
+        form = galleryForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            print(request.POST)
+            Images = request.FILES.getlist('Imgages')
+            galleryob = form.instance
+            galleryob.save()
+            for data in Images:
+                GalleryImage.objects.create(gallery=galleryob,img=data)
+            messages.success(request, f"Your Gallery with {len(Images)} images is added succesfully")
+            return redirect(request.path)
+        else:
+            messages.error(request, f"Something Wrong with the form check it first")
+        res['form'] = form
+    res['gallerys'] = Gallery.objects.all()
+    return render(request,"staff/gallery.html",res)
+def editgallery(request,id,opration):
+    res={}
+    ob = Gallery.objects.get(id=id)
+    if opration=='delete':
+        ob.delete()
+        messages.error(request,"Gallery Deleted Successfully")
+        return redirect('gallery')
+    res['form'] = galleryForm(instance=ob)
+    if opration=='edit':
+        if request.method=="POST":
+            form = galleryForm(request.POST,request.FILES,instance=ob)
+            if form.is_valid():
+                form.save()
+                print(request.POST)
+                Images = request.FILES.getlist('Imgages')
+                galleryob = form.instance
+                galleryob.save()
+                for data in Images:
+                    GalleryImage.objects.create(gallery=galleryob,img=data)
+                messages.success(request, f"Your Gallery with {len(Images)} images is added succesfully")
+                return redirect(request.path)
+            else:
+                messages.error(request, f"Something Wrong with the form check it first")
+            res['form'] = form
+    return render(request,"staff/editgallery.html",res)
+def deleteimage(request,id):
+    data = GalleryImage.objects.get(id=id)
+    red = data.gallery.id
+    data.delete()
+    messages.error(request,"deleted successfully")
+    return redirect('editgallery',id=red,opration='edit')

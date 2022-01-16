@@ -1,0 +1,73 @@
+{% extends 'schoolmain/basic.html' %}
+{% block body %}
+{% for message in messages  %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>{{ message }} </strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+      {% endfor %}
+      <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+      <script type="text/javascript">
+          // $('.portfolio-item').isotope({
+          //  	itemSelector: '.item',
+          //  	layoutMode: 'fitRows'
+          //  });
+          $('.portfolio-menu ul li').click(function () {
+              $('.portfolio-menu ul li').removeClass('active');
+              $(this).addClass('active');
+  
+              var selector = $(this).attr('data-filter');
+              $('.portfolio-item').isotope({
+                  filter: selector
+              });
+              return false;
+          });
+          $(document).ready(function () {
+              var popup_btn = $('.popup-btn');
+              popup_btn.magnificPopup({
+                  type: 'image',
+                  gallery: {
+                      enabled: true
+                  }
+              });
+          });
+      </script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
+  
+      <div class="container">
+          {% for data in gallerys %}
+          <div class="row">
+              <div class="col-lg-12 text-center my-4">
+                  <h4>{{data.title|title}}</h4>
+                  <p>{{data.description|safe}}</p>
+              </div>
+          </div>
+          <div class="portfolio-item row">
+            {% for img in data.GalleryImage.all %}
+              <div class="item selfie col-lg-3 col-md-4 col-6 col-sm">
+                  <a href="{{img.img.url}}"
+                      class="fancylight popup-btn" data-fancybox-group="light">
+                      <img class="img-fluid"
+                          src="{{img.img.url}}"
+                          alt="">
+                  </a>
+              </div>
+              {% endfor %}
+          </div>
+          {% endfor %}
+      </div>
+<style>
+    .img-fluid{
+        width: 100%;
+        height: 145px;
+        object-fit: cover;
+        margin-top: 15px;
+    }
+</style>
+{% endblock %}

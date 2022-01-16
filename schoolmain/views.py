@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import  schoolifo,contactform,schoolfeeinfo,aboutlearning,admissionform,recentprogram,activity
+from .models import  Gallery, schoolifo,contactform,schoolfeeinfo,aboutlearning,admissionform,recentprogram,activity
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from myapp.settings import EMAIL_HOST_USER
@@ -122,3 +122,7 @@ def learnings(request):
             askkidinfo.save()
             messages.success(request,"Your form has been submitted successfull")
     return render(request,'schoolmain/learnings.html',{'details':standardinfo})
+def gallery(request):
+    res={}
+    res['gallerys'] = Gallery.objects.all()
+    return render(request,'schoolmain/gallery.html',res)

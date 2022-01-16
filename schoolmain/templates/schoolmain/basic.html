@@ -73,6 +73,10 @@
                     <li class = "{% if request.path == learnings %}active{% endif %}"  style="--color: #669900;">
                         <a href="{{learnings}}">Learning</a>
                     </li>
+                    {% url "gallerymainurl" as learnings %}
+                    <li class = "{% if request.path == learnings %}active{% endif %}"  style="--color: #6600ff;">
+                        <a href="{{learnings}}">Gallery</a>
+                    </li>
                     {% url "signin" as signin %}
                     <li class = "{% if request.path == signin %}active{% endif %}"  style="--color: #ff0080;">
                         <a href="{{signin}}">Dashboard</a>
