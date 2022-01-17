@@ -1,6 +1,6 @@
 from django.http.response import HttpResponse
 from django.shortcuts import render,redirect
-# from render_block.base import render_block_to_string
+from render_block.base import render_block_to_string
 from myapp.verify import create_token,verify_token
 from django.core import serializers
 from . models import studentregister,leavestudent
